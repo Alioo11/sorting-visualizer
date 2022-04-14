@@ -16,6 +16,10 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
+        test: /\.ts$/,
+        use: ["ts-loader"],
+      },
+      {
         test: /\.html$/,
         use: ["html-loader"],
       },
@@ -33,10 +37,10 @@ module.exports = {
       //     },
       //   },
     ],
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: "./index.html",
-      }),
-    ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
 };
