@@ -1,2 +1,1 @@
-const hello = "fang";
-console.log("hello");
+import { mergeSort } from "./algorithms/sorting/merge-sort/mergeSort.test";

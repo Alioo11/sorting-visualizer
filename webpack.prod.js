@@ -21,3 +21,12 @@ module.exports = merge.merge(common, {
     ],
   },
 });
+
+// // jest.config.js
+// const { defaults } = require("jest-config");
+// module.exports = {
+//   verbose: true,
+//   moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
+//   preset: "ts-jest",
+//   testEnvironment: "node",
+// };
