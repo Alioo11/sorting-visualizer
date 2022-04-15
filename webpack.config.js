@@ -17,7 +17,8 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        use: ["ts-loader"],
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
       {
         test: /\.html$/,
@@ -37,6 +38,9 @@ module.exports = {
       //     },
       //   },
     ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   },
   plugins: [
     new HtmlWebpackPlugin({

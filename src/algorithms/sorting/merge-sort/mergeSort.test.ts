@@ -1,4 +1,3 @@
-import { group } from "console";
 import { mergeSort, merge } from "./mergeSort";
 import { getRandomArbitrary } from "../../../utils/commonFunction";
 

@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const merge = require("webpack-merge");
 const common = require("./webpack.config");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
 
 module.exports = merge.merge(common, {
   plugins: [new HtmlWebpackPlugin({ template: "./public/index.html" }), new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" })],
@@ -20,13 +21,9 @@ module.exports = merge.merge(common, {
       },
     ],
   },
+  plugins: [
+    new webpack.IgnorePlugin({
+      resourceRegExp: /\.test.ts$/,
+    }),
+  ],
 });
-
-// // jest.config.js
-// const { defaults } = require("jest-config");
-// module.exports = {
-//   verbose: true,
-//   moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
-//   preset: "ts-jest",
-//   testEnvironment: "node",
-// };

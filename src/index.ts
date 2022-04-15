@@ -1,1 +1,4 @@
-import { mergeSort } from "./algorithms/sorting/merge-sort/mergeSort.test";
+import { store } from "./redux/index";
+import { incremented, decremented } from "./redux";
+
+console.log(store);
