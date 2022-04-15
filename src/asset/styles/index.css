@@ -1,0 +1,28 @@
+:root {
+  --blue-gradient: linear-gradient(0deg, rgba(9, 0, 164, 1) 0%, rgba(5, 5, 255, 0.7791491596638656) 47%, rgba(0, 212, 255, 1) 100%);
+  --green-gradient: linear-gradient(0deg, rgb(0, 164, 25) 0%, rgb(65, 255, 125) 100%);
+  --red-gradient: linear-gradient(0deg, rgb(164, 0, 0) 0%, rgba(255, 5, 5, 0.779) 47%, rgb(255, 0, 0) 100%);
+}
+
+.bars-container {
+  padding: 1rem;
+  border: solid 1px black;
+  width: 80%;
+  margin: 2rem auto;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  transform: scaleY(-1);
+}
+.bar {
+  flex: auto;
+  margin-left: 2px;
+  border-radius: 0.3rem;
+  background: var(--blue-gradient);
+}
+
+.bar--simple {
+  flex: auto;
+  border-radius: 0;
+  background: var(--red-gradient);
+}

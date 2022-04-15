@@ -3,6 +3,10 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initialState = {
   value: 0,
+  detailMood: false,
+  speed: 50,
+  algorithm: "merge", // insert from algirithm types
+  barsCount: 30,
 };
 
 const counterSlice = createSlice({
@@ -15,6 +19,9 @@ const counterSlice = createSlice({
     decremented: (state) => {
       state.value -= 1;
     },
+    changeSpeed: (state, { payload }) => {
+      state.speed = parseInt(payload);
+    },
   },
 });
 
@@ -23,4 +30,4 @@ const store = configureStore({
 });
 
 export { store };
-export const { incremented, decremented } = counterSlice.actions;
+export const { incremented, decremented, changeSpeed } = counterSlice.actions;
