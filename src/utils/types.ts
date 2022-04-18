@@ -4,4 +4,9 @@ enum algorithmTypes {
   bubble_sort = "bubble_sort",
 }
 
-export { algorithmTypes };
+enum commandTypes {
+  swap,
+  shift,
+}
+
+export { algorithmTypes, commandTypes };

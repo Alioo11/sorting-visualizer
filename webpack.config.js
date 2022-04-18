@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.ts",
+  entry: ["./src/index.ts", "./src/DOMFunctions/manipulate.ts"],
   mode: "development",
   output: {
     filename: "js/main-[contenthash].js",

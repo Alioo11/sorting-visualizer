@@ -5,6 +5,10 @@
   --gray: #707070;
   --blue: #2f9cff;
 }
+
+.hide {
+  display: none !important;
+}
 html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: small;
@@ -79,6 +83,8 @@ body {
 .boards-container {
   background-color: rgb(232, 232, 232);
   height: 450px;
+  display: flex;
+  flex-direction: column;
 }
 
 .bars-container {
@@ -86,7 +92,7 @@ body {
   padding: 1rem;
   width: 95%;
   margin: 1rem auto;
-  height: 38%;
+  flex: auto;
   display: flex;
   flex-direction: row;
   transform: scaleY(-1);
@@ -97,7 +103,6 @@ body {
   margin-left: 1px;
   border-radius: 0.3rem;
   background: var(--blue-gradient);
-  transition: height 500ms;
 }
 
 .bar--simple {

@@ -4,12 +4,13 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 const initialState = {
   value: 0,
   detailMood: false,
+  compareMode: false,
   speed: 50,
   algorithm: "merge", // insert from algirithm types
   barsCount: 30,
   animationDuration: 500,
   colapsePivot: 100,
-  animationSpeed: 100,
+  animationSpeed: 500,
 };
 
 const counterSlice = createSlice({
@@ -25,6 +26,9 @@ const counterSlice = createSlice({
     changeSpeed: (state, { payload }) => {
       state.speed = parseInt(payload);
     },
+    toggleCompareMode: (state) => {
+      state.compareMode = !state.compareMode;
+    },
   },
 });
 
@@ -33,4 +37,4 @@ const store = configureStore({
 });
 
 export { store };
-export const { incremented, decremented, changeSpeed } = counterSlice.actions;
+export const { incremented, decremented, changeSpeed, toggleCompareMode } = counterSlice.actions;
