@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 
 module.exports = merge.merge(common, {
-  plugins: [new HtmlWebpackPlugin({ template: "./public/index.html" }), new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" })],
   mode: "production",
   output: {
     filename: "main-[contenthash].js",
@@ -25,5 +24,7 @@ module.exports = merge.merge(common, {
     new webpack.IgnorePlugin({
       resourceRegExp: /\.test.ts$/,
     }),
+    new HtmlWebpackPlugin({ template: "./public/index.html" }),
+    new MiniCssExtractPlugin({ filename: "styles/[name].css" }),
   ],
 });

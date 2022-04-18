@@ -2,27 +2,106 @@
   --blue-gradient: linear-gradient(0deg, rgba(9, 0, 164, 1) 0%, rgba(5, 5, 255, 0.7791491596638656) 47%, rgba(0, 212, 255, 1) 100%);
   --green-gradient: linear-gradient(0deg, rgb(0, 164, 25) 0%, rgb(65, 255, 125) 100%);
   --red-gradient: linear-gradient(0deg, rgb(164, 0, 0) 0%, rgba(255, 5, 5, 0.779) 47%, rgb(255, 0, 0) 100%);
+  --gray: #707070;
+  --blue: #2f9cff;
+}
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+}
+body {
+  margin: 0;
+}
+.gray {
+  color: var(--gray);
+}
+.blue {
+  color: var(--blue);
+}
+.nav-hr {
+  border: 2px solid var(--gray);
+  margin: 0 3rem;
+}
+.nav {
+  height: 150px;
+  width: 100%;
+}
+.burger {
+  width: 30px;
+  height: 30px;
+  margin: auto 0 auto auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  display: none;
+}
+.burger div {
+  width: 100%;
+  height: 6px;
+  background-color: var(--gray);
+}
+
+.nav-row {
+  height: 50px;
+  width: 85%;
+  padding: 0 3rem;
+  margin: auto;
+  display: flex;
+}
+.logo-container {
+  display: flex;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+  margin: 0.5rem 1rem;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.13);
+  border-radius: 0.3rem;
+}
+.logo-text {
+  margin: auto 1rem;
+}
+
+.dropdown-container {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--gray);
+  height: fit-content;
+  cursor: pointer;
+}
+.dropdown-container:hover {
+  background-color: red;
+}
+.dropdown-list {
+  position: absolute;
+}
+
+.boards-container {
+  background-color: rgb(232, 232, 232);
+  height: 450px;
 }
 
 .bars-container {
+  background-color: white;
   padding: 1rem;
-  border: solid 1px black;
-  width: 80%;
-  margin: 2rem auto;
-  height: 500px;
+  width: 95%;
+  margin: 1rem auto;
+  height: 38%;
   display: flex;
   flex-direction: row;
   transform: scaleY(-1);
 }
+
 .bar {
   flex: auto;
-  margin-left: 2px;
+  margin-left: 1px;
   border-radius: 0.3rem;
   background: var(--blue-gradient);
+  transition: height 500ms;
 }
 
 .bar--simple {
   flex: auto;
   border-radius: 0;
-  background: var(--red-gradient);
+  background: var(--blue-gradient);
 }

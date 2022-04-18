@@ -7,6 +7,9 @@ const initialState = {
   speed: 50,
   algorithm: "merge", // insert from algirithm types
   barsCount: 30,
+  animationDuration: 500,
+  colapsePivot: 100,
+  animationSpeed: 100,
 };
 
 const counterSlice = createSlice({
