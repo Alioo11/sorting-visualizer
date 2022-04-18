@@ -2,7 +2,6 @@ import redux from "redux";
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: 0,
   detailMood: false,
   compareMode: false,
   speed: 50,
@@ -10,18 +9,15 @@ const initialState = {
   barsCount: 30,
   animationDuration: 500,
   colapsePivot: 100,
-  animationSpeed: 500,
+  animationSpeed: 900,
 };
 
 const counterSlice = createSlice({
   name: "App",
   initialState: initialState,
   reducers: {
-    incremented: (state) => {
-      state.value += 1;
-    },
-    decremented: (state) => {
-      state.value -= 1;
+    changeBarsCount: (state, { payload }) => {
+      state.barsCount = parseInt(payload);
     },
     changeSpeed: (state, { payload }) => {
       state.speed = parseInt(payload);
@@ -37,4 +33,4 @@ const store = configureStore({
 });
 
 export { store };
-export const { incremented, decremented, changeSpeed, toggleCompareMode } = counterSlice.actions;
+export const { changeSpeed, toggleCompareMode, changeBarsCount } = counterSlice.actions;

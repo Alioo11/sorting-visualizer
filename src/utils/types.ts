@@ -9,4 +9,10 @@ enum commandTypes {
   shift,
 }
 
-export { algorithmTypes, commandTypes };
+enum boardType {
+  main,
+  second,
+  both,
+}
+
+export { algorithmTypes, commandTypes, boardType };
