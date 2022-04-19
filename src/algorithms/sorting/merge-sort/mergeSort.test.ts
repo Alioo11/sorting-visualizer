@@ -1,4 +1,4 @@
-import { mergeSort, merge } from "./mergeSort";
+import { mergeSort, merge, mergeTemp } from "./mergeSort";
 import { getRandomArbitrary } from "../../../utils/commonFunction";
 
 describe("algorithms test", () => {
@@ -26,6 +26,17 @@ describe("algorithms test", () => {
       extected: [1, 5, 6, 6, 8, 11, 99],
     },
   ];
+
+  const mergeTempTestCases = [
+    [2, 4, 7, 8, 1, 3, 11],
+    [4, 8, 2, 7],
+    [3, 9, 11, 2, 5, 9],
+    [6, 25, 49, 51, 1, 7, 9, 12],
+  ];
+
+  mergeTempTestCases.forEach((item) => {
+    expect(mergeTemp(0, item.length - 1, [...item])).toEqual(item.sort((a, b) => a - b));
+  });
 
   testCases.forEach((item) => {
     expect(merge(item.input[0], item.input[1])).toEqual(item.extected);

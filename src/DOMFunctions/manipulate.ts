@@ -92,18 +92,4 @@ export const MoveBarAsyncTemp = (barIndex: number, amount: number, type: boardTy
   });
 };
 
-// export const swapBars = async (bar_1_index: number, bar_2_index: number, animation = true) => {
-//   const diff = bar_2_index - bar_1_index;
-//   if (animation) {
-//     await Promise.all([MoveBarAsync(bars[res[i][0]], -1 * diff), MoveBarAsync(bars[res[i][1]], diff)]);
-//   } else {
-//   }
-// };
-
-// export const barss = (bar: HTMLDivElement, amount: number) => {
-//   const barLength = bar.getBoundingClientRect().width;
-//   const animationSpeed = store.getState().animationSpeed;
-//   bar.animate([{ transform: "" }, { transform: `translateX(${amount * (barLength + 1)}px)` }], { duration: animationSpeed, easing: "ease-out" });
-// };
-
 export { board_1_Elements, board_2_Elements };
