@@ -7,7 +7,7 @@ import { swapBars, MoveBarAsyncTemp, initBoards, fillBoard, putArryAtElement } f
 import { randomizeArray } from "./algorithms/randomize/randomize";
 import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
 import { boardType } from "./utils/types";
-//import { mergeTemp } from "./algorithms/sorting/merge-sort/mergeSort";
+import { mergeFF, mergeSW } from "./algorithms/sorting/merge-sort/mergeSort";
 
 //% selecting DOM elements
 const algoSpeed = document.querySelector("#algo-speed");
@@ -25,7 +25,9 @@ algoSpeed?.addEventListener("input", (e: any) => {
   store.dispatch(changeBarsCount(e.target.value));
 });
 
-const testCase = [2, 4, 7, 8, 1, 3, 11, 22];
+const testCase = [3, 103, 121, 140, 19, 73, 251];
+
+console.log(mergeFF(testCase, 2, 4, 5));
 
 btn_3?.addEventListener("click", () => {
   store.dispatch(toggleCompareMode());
