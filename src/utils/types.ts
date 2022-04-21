@@ -15,4 +15,33 @@ enum boardType {
   both,
 }
 
-export { algorithmTypes, commandTypes, boardType };
+enum barColors {
+  blue,
+  red,
+  green,
+}
+
+interface instructions {
+  animationFunction: Function[];
+  mainFunc: Function[];
+  data: number[];
+}
+
+class instruction {
+  animationFunc: Function;
+  animationArgs: any[];
+  mainFunc: Function | null;
+  mainArgs: any[];
+  data: any[];
+  fraction: number = 1;
+  constructor(animeFunc: Function, mainFunc: Function | null, animationArgs: any[], mainArgs: any[], data: any[], fraction: number | null = 1) {
+    this.animationFunc = animeFunc;
+    this.mainFunc = mainFunc;
+    this.animationArgs = animationArgs;
+    this.mainArgs = mainArgs;
+    this.data = data;
+    fraction && (this.fraction = fraction);
+  }
+}
+
+export { algorithmTypes, commandTypes, boardType, barColors, instructions, instruction };

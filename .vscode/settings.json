@@ -53,5 +53,10 @@
           "bold": true,
           "italic": false
         }
-      ]
+      ],
+      "editor.lineHeight": 20,
+      "typescript.inlayHints.enumMemberValues.enabled": true,
+      "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+      "typescript.inlayHints.parameterTypes.enabled": true,
+      "typescript.suggest.completeFunctionCalls": true
 }

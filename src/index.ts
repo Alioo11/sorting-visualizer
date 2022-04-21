@@ -3,11 +3,22 @@ import { changeSpeed, toggleCompareMode, changeBarsCount } from "./redux";
 import { incrementingArray, wait } from "./utils/commonFunction";
 import "./asset/styles/index.css";
 import { createBars } from "./DOMFunctions/createBars";
-import { swapBars, MoveBarAsyncTemp, initBoards, fillBoard, putArryAtElement } from "./DOMFunctions/manipulate";
+import {
+  swapBars,
+  MoveBarAnimationAsync,
+  initBoards,
+  fillBoard,
+  putArryAtElement,
+  PutBar,
+  ChangeBarsColor,
+  swapBarAnimationAsync,
+  compareBars,
+} from "./DOMFunctions/manipulate";
 import { randomizeArray } from "./algorithms/randomize/randomize";
 import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
-import { boardType } from "./utils/types";
+import { boardType, barColors } from "./utils/types";
 import { mergeFF, mergeSW } from "./algorithms/sorting/merge-sort/mergeSort";
+import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
 
 //% selecting DOM elements
 const algoSpeed = document.querySelector("#algo-speed");
@@ -27,7 +38,11 @@ algoSpeed?.addEventListener("input", (e: any) => {
 
 const testCase = [3, 103, 121, 140, 19, 73, 251];
 
-console.log(mergeFF(testCase, 2, 4, 5));
+console.log(testCase);
+
+bubbleSortRUNNER(testCase);
+
+// console.log(mergeFF(testCase, 2, 4, 5));
 
 btn_3?.addEventListener("click", () => {
   store.dispatch(toggleCompareMode());
@@ -52,20 +67,6 @@ store.subscribe(() => {
   compareMode && putArryAtElement(incrementingArr, boardType.second);
 });
 
-btn_1?.addEventListener("click", async () => {
-  await Promise.all([
-    MoveBarAsyncTemp(11, -5),
-    MoveBarAsyncTemp(6, 5),
-    MoveBarAsyncTemp(11, -5, boardType.second),
-    MoveBarAsyncTemp(6, 5, boardType.second),
-  ]);
-  //await Promise.all([MoveBarAsyncTemp(11, -5, boardType.second), MoveBarAsyncTemp(6, 5, boardType.second)]);
-  swapBars(11, 6);
-  swapBars(11, 6, boardType.second);
-  //swapBars(11, 6, boardType.second);
-  //console.log(board_1_Elements);
-});
-
 btn_2?.addEventListener("click", async () => {
   if (board_1_Elements && board_2_Elements) {
     const barsHeights = Array.from(board_1_Elements.keys());
@@ -78,12 +79,7 @@ btn_2?.addEventListener("click", async () => {
       board_2_Elements[res[i][1]].classList.add("selected");
       //await wait(50);
       if (store.getState().animationSpeed > 200) {
-        await Promise.all([
-          MoveBarAsyncTemp(res[i][0], -1 * diff),
-          MoveBarAsyncTemp(res[i][1], diff),
-          MoveBarAsyncTemp(res[i][0], -1 * diff, boardType.second),
-          MoveBarAsyncTemp(res[i][1], diff, boardType.second),
-        ]);
+        await Promise.all([swapBarAnimationAsync(res[i][0], res[i][1]), swapBarAnimationAsync(res[i][0], res[i][1], boardType.second)]);
       } else {
         await wait(store.getState().animationSpeed);
       }
@@ -96,4 +92,14 @@ btn_2?.addEventListener("click", async () => {
       swapBars(res[i][0], res[i][1], boardType.second);
     }
   }
+});
+
+btn_4?.addEventListener("click", () => {
+  PutBar(50, 50);
+  ChangeBarsColor([1, 2, 3, 4, 5, 6, 7, 8, 9], barColors.red, boardType.main);
+});
+btn_1?.addEventListener("click", async () => {
+  await compareBars(5, 9);
+  await Promise.all([swapBarAnimationAsync(5, 9)]);
+  swapBars(5, 9);
 });

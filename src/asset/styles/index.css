@@ -1,6 +1,6 @@
 :root {
   --purple-gradient: linear-gradient(0deg, rgba(85, 0, 82, 1) 0%, rgba(219, 5, 255, 1) 52%, rgba(255, 0, 134, 1) 100%);
-  --blue-gradient: linear-gradient(0deg, rgba(9, 0, 164, 1) 0%, rgba(5, 5, 255, 0.7791491596638656) 47%, rgba(0, 212, 255, 1) 100%);
+  --blue-gradient: linear-gradient(0deg, rgb(71, 64, 206) 0%, rgb(39, 77, 202) 47%, rgba(0, 212, 255, 1) 100%);
   --green-gradient: linear-gradient(0deg, rgb(0, 164, 25) 0%, rgb(65, 255, 125) 100%);
   --red-gradient: linear-gradient(0deg, rgb(164, 0, 0) 0%, rgba(255, 5, 5, 0.779) 47%, rgb(255, 0, 0) 100%);
   --gray: #707070;
@@ -14,6 +14,19 @@
 .selected {
   background: var(--purple-gradient) !important;
 }
+._blue {
+  background: var(--blue-gradient) !important;
+}
+._purple {
+  background: var(--purple-gradient) !important;
+}
+._green {
+  background: var(--green-gradient) !important;
+}
+._red {
+  background: var(--red-gradient) !important;
+}
+
 html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: small;

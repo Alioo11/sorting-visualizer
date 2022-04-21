@@ -11,7 +11,7 @@ describe("algorithms test", () => {
 
   sortTestCases.forEach((item) => {
     test(`testing ${item.slice(0, 30)},...`, () => {
-      expect(bubbleSort([...item])).toEqual(item.sort((a, b) => a - b));
+      expect(bubbleSort([...item]).inputArr).toEqual(item.sort((a, b) => a - b));
     });
   });
 });
