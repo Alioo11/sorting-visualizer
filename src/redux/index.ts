@@ -9,7 +9,7 @@ const initialState = {
   barsCount: 30,
   animationDuration: 500,
   colapsePivot: 100,
-  animationSpeed: 50,
+  animationSpeed: 5,
 };
 
 const counterSlice = createSlice({

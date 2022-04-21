@@ -1,7 +1,6 @@
 import { store } from "./redux/index";
 import { changeSpeed, toggleCompareMode, changeBarsCount } from "./redux";
 import { incrementingArray, wait } from "./utils/commonFunction";
-import "./asset/styles/index.css";
 import { createBars } from "./DOMFunctions/createBars";
 import {
   swapBars,
@@ -20,6 +19,10 @@ import { boardType, barColors } from "./utils/types";
 import { mergeFF, mergeSW } from "./algorithms/sorting/merge-sort/mergeSort";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
 
+//% importing style assets
+
+import "./asset/styles/index.css";
+
 //% selecting DOM elements
 const algoSpeed = document.querySelector("#algo-speed");
 
@@ -30,7 +33,6 @@ const btn_1 = document.querySelector("#test-btn-1");
 const btn_2 = document.querySelector("#test-btn-2");
 const btn_3 = document.querySelector("#test-btn-3");
 const btn_4 = document.querySelector("#test-btn-4");
-//% selecting DOM elements
 
 algoSpeed?.addEventListener("input", (e: any) => {
   store.dispatch(changeBarsCount(e.target.value));
@@ -98,9 +100,10 @@ btn_1?.addEventListener("click", async () => {
   if (board_1_Elements) {
     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
     const bubbleSortInstructions = bubbleSortRUNNER(barsHeights);
+    const animationSpeed = store.getState().animationSpeed;
     for (let i = 0; i < bubbleSortInstructions.length; i++) {
       const { animationArgs, fraction, animationFunc, mainArgs, mainFunc } = bubbleSortInstructions[i];
-      await animationFunc(...animationArgs);
+      animationSpeed > 200 ? await animationFunc(...animationArgs) : await wait(animationSpeed);
       mainFunc && (await mainFunc(...mainArgs));
     }
   }
