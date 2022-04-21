@@ -1,4 +1,4 @@
-import { swapBars } from "../../../DOMFunctions/manipulate";
+import { swapBars, compareBars, swapBarAnimationAsync } from "../../../DOMFunctions/manipulate";
 import { instruction } from "../../../utils/types";
 
 const BUBBLE_SORT_DETAIL_PIVOT = 50;
@@ -12,7 +12,7 @@ const bubbleSort = (inputArr: number[]) => {
   let len = inputArr.length;
   let animationData = [];
   for (let i = 0; i < len; i++) {
-    for (let j = 0; j < len; j++) {
+    for (let j = 0; j < len - 1; j++) {
       let instructionRow = [];
       if (len < BUBBLE_SORT_DETAIL_PIVOT) instructionRow.push({ action: actionTypes.compare, data: [j, j + 1] });
       if (inputArr[j] > inputArr[j + 1]) {
@@ -29,10 +29,16 @@ const bubbleSort = (inputArr: number[]) => {
 
 export const bubbleSortRUNNER = (inputArr: number[]) => {
   const { animationData } = bubbleSort(inputArr);
-  console.log(animationData);
-  const formatedData = animationData.map((animationItem) => {});
-
-  //console.log(data);
+  const formatedData = animationData.map((animationItem) => {
+    const animatioLength = animationItem.length;
+    return animationItem.map((instructionItem) => {
+      const animationFuncRef = instructionItem.action === actionTypes.compare ? compareBars : swapBarAnimationAsync;
+      const mainFuncRef = instructionItem.action === actionTypes.compare ? null : swapBars;
+      return new instruction(animationFuncRef, mainFuncRef, instructionItem.data, instructionItem.data, 1 / animatioLength);
+    });
+  });
+  return formatedData.flat();
+  // console.log(formatedData.flat());
 };
 
 export { bubbleSort };

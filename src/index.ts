@@ -36,11 +36,11 @@ algoSpeed?.addEventListener("input", (e: any) => {
   store.dispatch(changeBarsCount(e.target.value));
 });
 
-const testCase = [3, 103, 121, 140, 19, 73, 251];
+// const testCase = [3, 103, 121, 140, 19, 73, 251];
 
-console.log(testCase);
+// console.log(testCase);
 
-bubbleSortRUNNER(testCase);
+// bubbleSortRUNNER(testCase);
 
 // console.log(mergeFF(testCase, 2, 4, 5));
 
@@ -94,12 +94,26 @@ btn_2?.addEventListener("click", async () => {
   }
 });
 
+btn_1?.addEventListener("click", async () => {
+  if (board_1_Elements) {
+    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+    const bubbleSortInstructions = bubbleSortRUNNER(barsHeights);
+    for (let i = 0; i < bubbleSortInstructions.length; i++) {
+      const { animationArgs, fraction, animationFunc, mainArgs, mainFunc } = bubbleSortInstructions[i];
+      await animationFunc(...animationArgs);
+      mainFunc && (await mainFunc(...mainArgs));
+    }
+  }
+});
+
 btn_4?.addEventListener("click", () => {
   PutBar(50, 50);
   ChangeBarsColor([1, 2, 3, 4, 5, 6, 7, 8, 9], barColors.red, boardType.main);
 });
-btn_1?.addEventListener("click", async () => {
-  await compareBars(5, 9);
-  await Promise.all([swapBarAnimationAsync(5, 9)]);
-  swapBars(5, 9);
-});
+// btn_1?.addEventListener("click", async () => {
+//   await compareBars(5, 9);
+
+//   await Promise.all([swapBarAnimationAsync(5, 9)]);
+
+//   swapBars(5, 9);
+// });

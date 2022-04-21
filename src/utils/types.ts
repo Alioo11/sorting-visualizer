@@ -32,14 +32,12 @@ class instruction {
   animationArgs: any[];
   mainFunc: Function | null;
   mainArgs: any[];
-  data: any[];
   fraction: number = 1;
-  constructor(animeFunc: Function, mainFunc: Function | null, animationArgs: any[], mainArgs: any[], data: any[], fraction: number | null = 1) {
+  constructor(animeFunc: Function, mainFunc: Function | null, animationArgs: any[], mainArgs: any[], fraction: number | null = 1) {
     this.animationFunc = animeFunc;
     this.mainFunc = mainFunc;
     this.animationArgs = animationArgs;
     this.mainArgs = mainArgs;
-    this.data = data;
     fraction && (this.fraction = fraction);
   }
 }
