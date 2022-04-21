@@ -35,21 +35,15 @@ const btn_2 = document.querySelector("#test-btn-2");
 const btn_3 = document.querySelector("#test-btn-3");
 const btn_4 = document.querySelector("#test-btn-4");
 
-algoSpeed?.addEventListener("input", (e: any) => {
-  store.dispatch(changeBarsCount(e.target.value));
-});
+//% initializing events
 
-barCount?.addEventListener("input", (e: any) => {
+algoSpeed?.addEventListener("input", (e: any) => {
   store.dispatch(changeSpeed(e.target.max - e.target.value));
 });
 
-// const testCase = [3, 103, 121, 140, 19, 73, 251];
-
-// console.log(testCase);
-
-// bubbleSortRUNNER(testCase);
-
-// console.log(mergeFF(testCase, 2, 4, 5));
+barCount?.addEventListener("input", (e: any) => {
+  store.dispatch(changeBarsCount(e.target.value));
+});
 
 btn_3?.addEventListener("click", () => {
   store.dispatch(toggleCompareMode());

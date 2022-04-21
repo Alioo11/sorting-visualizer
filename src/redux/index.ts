@@ -4,7 +4,6 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 const initialState = {
   detailMood: false,
   compareMode: false,
-  speed: 50,
   algorithm: "merge", // insert from algirithm types
   barsCount: 30,
   animationDuration: 500,
