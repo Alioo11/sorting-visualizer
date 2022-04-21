@@ -9,7 +9,7 @@ const initialState = {
   barsCount: 30,
   animationDuration: 500,
   colapsePivot: 100,
-  animationSpeed: 5,
+  animationSpeed: 500,
 };
 
 const counterSlice = createSlice({
@@ -20,7 +20,7 @@ const counterSlice = createSlice({
       state.barsCount = parseInt(payload);
     },
     changeSpeed: (state, { payload }) => {
-      state.speed = parseInt(payload);
+      state.animationSpeed = parseInt(payload);
     },
     toggleCompareMode: (state) => {
       state.compareMode = !state.compareMode;

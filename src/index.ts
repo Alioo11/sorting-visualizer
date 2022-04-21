@@ -25,6 +25,7 @@ import "./asset/styles/index.css";
 
 //% selecting DOM elements
 const algoSpeed = document.querySelector("#algo-speed");
+const barCount = document.querySelector("#bar-count");
 
 const barsContainer_1 = document.querySelector("#bars-container-1");
 const barsContainer_2 = document.querySelector("#bars-container-2");
@@ -36,6 +37,10 @@ const btn_4 = document.querySelector("#test-btn-4");
 
 algoSpeed?.addEventListener("input", (e: any) => {
   store.dispatch(changeBarsCount(e.target.value));
+});
+
+barCount?.addEventListener("input", (e: any) => {
+  store.dispatch(changeSpeed(e.target.max - e.target.value));
 });
 
 // const testCase = [3, 103, 121, 140, 19, 73, 251];

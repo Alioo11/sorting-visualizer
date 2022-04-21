@@ -34,13 +34,13 @@
                Algorithm
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <div class="dropdown-divider"></div>
               <li class="dropdown-header"> O(n2) </li>
-              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" value = "bbs" href="#">Bubble Sort</a>
+              <a class="dropdown-item" value = "bbs" href="#">Insertion Sort *</a>
+              <a class="dropdown-item" value = "bbs" href="#">Selection Sort*</a>
               <div class="dropdown-divider"></div>
               <li class="dropdown-header">O(n*log n) </li>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="#">Merge Sort</a>
             </div>
           </div>
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="if disabled turn on the compare mode ">
@@ -65,11 +65,11 @@
         </div> -->
         <div class="bd-example">
             <label for="customRange1" class="form-label">Bars</label>
-            <input type="range" step="3" min="5" max="400" value="50" id="algo-speed" class="form-range" id="customRange1">
+            <input type="range" step="3" min="5" max="400" value="50" id="algo-speed" class="form-range">
         </div>
         <div class="bd-example">
             <label for="customRange1" class="form-label">Speed</label>
-            <input type="range" step="3" min="5" max="100"  class="form-range" id="customRange1">
+            <input type="range" step="3" min="5" max="1000" value="120" id="bar-count"  class="form-range">
         </div>
         <button type="button" class="btn btn-secondary">Randomize</button>
     </div>
