@@ -15,7 +15,7 @@ import {
 } from "./DOMFunctions/manipulate";
 import { randomizeArray } from "./algorithms/randomize/randomize";
 import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
-import { boardType, barColors } from "./utils/types";
+import { boardType, barColors, commandTypes } from "./utils/types";
 import { mergeFF, mergeSW } from "./algorithms/sorting/merge-sort/mergeSort";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
 
@@ -50,22 +50,27 @@ btn_3?.addEventListener("click", () => {
 });
 
 initBoards();
+let barCountPrevState: number;
 
 store.subscribe(() => {
-  const compareMode = store.getState().compareMode;
+  const { compareMode } = store.getState();
   if (!compareMode) {
     barsContainer_2?.classList.add("hide");
   } else {
     barsContainer_2?.classList.remove("hide");
-    fillBoard(barsContainer_2, boardType.second);
+    barsContainer_2?.children.length == 0 && fillBoard(barsContainer_2, boardType.second);
   }
 });
 
 store.subscribe(() => {
   const { compareMode, barsCount } = store.getState();
-  const incrementingArr = incrementingArray(barsCount);
-  putArryAtElement(incrementingArr, boardType.main);
-  compareMode && putArryAtElement(incrementingArr, boardType.second);
+  if (barCountPrevState !== barsCount) {
+    console.log("updating bars");
+    barCountPrevState = barsCount;
+    const incrementingArr = incrementingArray(barsCount);
+    putArryAtElement(incrementingArr, boardType.main);
+    compareMode && putArryAtElement(incrementingArr, boardType.second);
+  }
 });
 
 btn_2?.addEventListener("click", async () => {
