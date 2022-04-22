@@ -20,6 +20,8 @@ import { mergeFF, mergeSW } from "./algorithms/sorting/merge-sort/mergeSort";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
 import { isActiveAnimation } from "./utils/commonFunction";
 
+import { engine } from "./utils/engine";
+
 //% importing style assets
 
 import "./asset/styles/index.css";
@@ -45,7 +47,12 @@ const btn_4 = document.querySelector("#test-btn-4");
 //% initializing events
 
 btn_3?.addEventListener("click", () => {
-  console.log(isActiveAnimation());
+  if (board_1_Elements) {
+    const isCompareMode = store.getState().compareMode;
+    const barsHeights = Array.from(board_1_Elements.keys());
+    const res = randomizeArrayRUNNER(barsHeights);
+    isCompareMode ? engine(res, res) : engine(res);
+  }
 });
 
 algoSpeed?.addEventListener("input", (e: any) => {
@@ -82,7 +89,6 @@ store.subscribe(() => {
 store.subscribe(() => {
   const { compareMode, barsCount } = store.getState();
   if (barCountPrevState !== barsCount) {
-    console.log("updating bars");
     barCountPrevState = barsCount;
     const incrementingArr = incrementingArray(barsCount);
     putArryAtElement(incrementingArr, boardType.main);
@@ -90,14 +96,10 @@ store.subscribe(() => {
   }
 });
 
-const res = randomizeArrayRUNNER([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-console.log(res);
-
 btn_2?.addEventListener("click", async () => {
   if (board_1_Elements && board_2_Elements) {
     const barsHeights = Array.from(board_1_Elements.keys());
     const res = randomizeArray(barsHeights);
-    console.log(res);
     for (let i = 0; i < res.length; i++) {
       const diff = res[i][0] - res[i][1];
       board_1_Elements[res[i][0]].classList.add("selected");
@@ -138,10 +140,3 @@ btn_4?.addEventListener("click", () => {
   PutBar(50, 50);
   ChangeBarsColor([1, 2, 3, 4, 5, 6, 7, 8, 9], barColors.red, boardType.main);
 });
-// btn_1?.addEventListener("click", async () => {
-//   await compareBars(5, 9);
-
-//   await Promise.all([swapBarAnimationAsync(5, 9)]);
-
-//   swapBars(5, 9);
-// });
