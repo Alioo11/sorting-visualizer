@@ -26,6 +26,12 @@ import "./asset/styles/index.css";
 //% selecting DOM elements
 const algoSpeed = document.querySelector("#algo-speed");
 const barCount = document.querySelector("#bar-count");
+const randomizeBtn = document.querySelector("#randomize");
+const startBtn = document.querySelector("#start");
+const compareModeBtn = document.querySelector("#compareMode");
+
+const dropDownAlgoBtn_1 = document.querySelector("#dropDownAlgorithm1");
+const dropDownAlgoBtn_2 = document.querySelector("#dropDownAlgorithm2");
 
 const barsContainer_1 = document.querySelector("#bars-container-1");
 const barsContainer_2 = document.querySelector("#bars-container-2");
@@ -45,8 +51,14 @@ barCount?.addEventListener("input", (e: any) => {
   store.dispatch(changeBarsCount(e.target.value));
 });
 
-btn_3?.addEventListener("click", () => {
+compareModeBtn?.addEventListener("click", () => {
   store.dispatch(toggleCompareMode());
+  const compareMode = store.getState().compareMode;
+  if (compareMode) {
+    dropDownAlgoBtn_2?.removeAttribute("disabled");
+  } else {
+    dropDownAlgoBtn_2?.setAttribute("disabled", "true");
+  }
 });
 
 initBoards();

@@ -1,6 +1,6 @@
 :root {
   --purple-gradient: linear-gradient(0deg, rgba(85, 0, 82, 1) 0%, rgba(219, 5, 255, 1) 52%, rgba(255, 0, 134, 1) 100%);
-  --blue-gradient: linear-gradient(0deg, rgba(9, 0, 164, 1) 0%, rgba(5, 5, 255, 0.7791491596638656) 47%, rgba(0, 212, 255, 1) 100%);
+  --blue-gradient: linear-gradient(0deg, rgb(71, 64, 206) 0%, rgb(39, 77, 202) 47%, rgba(0, 212, 255, 1) 100%);
   --green-gradient: linear-gradient(0deg, rgb(0, 164, 25) 0%, rgb(65, 255, 125) 100%);
   --red-gradient: linear-gradient(0deg, rgb(164, 0, 0) 0%, rgba(255, 5, 5, 0.779) 47%, rgb(255, 0, 0) 100%);
   --gray: #707070;
@@ -10,10 +10,22 @@
 .hide {
   display: none !important;
 }
-
 .selected {
   background: var(--purple-gradient) !important;
 }
+._blue {
+  background: var(--blue-gradient) !important;
+}
+._purple {
+  background: var(--purple-gradient) !important;
+}
+._green {
+  background: var(--green-gradient) !important;
+}
+._red {
+  background: var(--red-gradient) !important;
+}
+
 html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: small;
@@ -52,12 +64,20 @@ body {
 
 .nav-row {
   height: 50px;
-  width: 85%;
-  padding: 0 3rem;
+  width: 95%;
+  padding: 0 1rem;
   margin: auto;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
+.nav-row > :nth-child(n) {
+  padding: 0 0.5rem;
+}
+
 .logo-container {
+  width: 100%;
+  justify-self: flex-end;
   display: flex;
 }
 .logo {
@@ -114,5 +134,20 @@ body {
   flex: auto;
   border-radius: 0;
   background: var(--blue-gradient);
+}
+@media only screen and (max-width: 1120px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 820px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 420px) {
+  html {
+    font-size: 10px;
+  }
 }
 

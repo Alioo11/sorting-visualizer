@@ -30,10 +30,10 @@
     </div>
     <div class="nav-row">
         <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn dropdown-toggle" type="button" id="dropDownAlgorithm1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                Algorithm
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu" aria-labelledby="dropDownAlgorithm1">
               <li class="dropdown-header"> O(n2) </li>
               <a class="dropdown-item" value = "bbs" href="#">Bubble Sort</a>
               <a class="dropdown-item" value = "bbs" href="#">Insertion Sort *</a>
@@ -45,10 +45,10 @@
           </div>
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="if disabled turn on the compare mode ">
         <div class="dropdown">
-            <button disabled class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button disabled class="btn dropdown-toggle" type="button" id="dropDownAlgorithm2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                2nd Algorithm
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu" aria-labelledby="dropDownAlgorithm2">
               <a class="dropdown-item" href="#">Action</a>
               <div class="dropdown-divider"></div>
               <li class="dropdown-header"> O(n2) </li>
@@ -67,14 +67,15 @@
             <label for="customRange1" class="form-label">Speed</label>
             <input type="range" step="3" min="5" max="1000" value="120" id="algo-speed"  class="form-range">
         </div>
-        <button type="button" class="btn btn-secondary">Randomize</button>
+        <button type="button" class="btn btn-secondary p-2" id="randomize">Randomize</button>
     </div>
     <div class="nav-row">
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" >
-            <label class="form-check-label" for="flexSwitchCheckDisabled">compare mode</label>
+            <input class="form-check-input" type="checkbox" id="compareMode" >
+            <label class="form-check-label" for="compareMode">compare mode</label>
           </div>
-          <button type="button" class="btn btn-primary btn-lg">start</button>
+          <button type="button" class="btn btn-primary  p-2" id="start">start</button>
+
         <button class="btn btn-light"  id="test-btn-1">test btn</button>  
         <button class="btn btn-light"  id="test-btn-2" >test btn 2</button>
         <button class="btn btn-light"  id="test-btn-3" >test btn 3</button>

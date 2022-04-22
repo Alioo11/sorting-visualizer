@@ -1,6 +1,6 @@
 :root {
   --purple-gradient: linear-gradient(0deg, rgba(85, 0, 82, 1) 0%, rgba(219, 5, 255, 1) 52%, rgba(255, 0, 134, 1) 100%);
-  --blue-gradient: linear-gradient(0deg, rgb(71, 64, 206) 0%, rgb(39, 77, 202) 47%, rgba(0, 212, 255, 1) 100%);
+  --blue-gradient: linear-gradient(0deg, rgb(0, 123, 255) 0%, rgba(0, 212, 255, 1) 100%);
   --green-gradient: linear-gradient(0deg, rgb(0, 164, 25) 0%, rgb(65, 255, 125) 100%);
   --red-gradient: linear-gradient(0deg, rgb(164, 0, 0) 0%, rgba(255, 5, 5, 0.779) 47%, rgb(255, 0, 0) 100%);
   --gray: #707070;
@@ -76,6 +76,8 @@ body {
 }
 
 .logo-container {
+  width: 100%;
+  justify-self: flex-end;
   display: flex;
 }
 .logo {
@@ -124,7 +126,7 @@ body {
 .bar {
   flex: auto;
   margin-left: 1px;
-  border-radius: 0.3rem;
+  border-radius: 0.2rem;
   background: var(--blue-gradient);
 }
 
