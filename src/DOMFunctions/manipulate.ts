@@ -28,7 +28,7 @@ export const fillBoard = (containerRef: Element | null, type: boardType) => {
 export const initBoards = () => {
   const compareMode = store.getState().compareMode;
   fillBoard(barsContainer_1, boardType.main);
-  compareMode && fillBoard(barsContainer_2, boardType.second);
+  fillBoard(barsContainer_2, boardType.second);
   !compareMode && barsContainer_2?.classList.add("hide");
 };
 

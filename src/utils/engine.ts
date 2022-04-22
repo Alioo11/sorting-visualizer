@@ -7,7 +7,6 @@ export const engine = async (instructions_1: instruction[], instructions_2: inst
   const prograpLength = Math.max(instructions_1.length, instructions_2.length);
   const isAnimationAvtive = isActiveAnimation();
   const animationSpeed = store.getState().animationSpeed;
-
   if (instructions_2 && instructions_2.length !== 0) {
     for (let i = 0; i < prograpLength; i++) {
       const { animationArgs, fraction, animationFunc, mainArgs, mainFunc } = instructions_1[i];

@@ -55,6 +55,15 @@ btn_3?.addEventListener("click", () => {
   }
 });
 
+btn_1?.addEventListener("click", () => {
+  if (board_1_Elements) {
+    const isCompareMode = store.getState().compareMode;
+    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+    const res = bubbleSortRUNNER(barsHeights);
+    isCompareMode ? engine(res, res) : engine(res);
+  }
+});
+
 algoSpeed?.addEventListener("input", (e: any) => {
   store.dispatch(changeSpeed(e.target.max - e.target.value));
 });
@@ -75,14 +84,15 @@ compareModeBtn?.addEventListener("click", () => {
 
 initBoards();
 let barCountPrevState: number;
-
+let barCountPreveState2: number;
 store.subscribe(() => {
-  const { compareMode } = store.getState();
+  const { compareMode, barsCount } = store.getState();
+  barCountPreveState2 = barsCount;
   if (!compareMode) {
     barsContainer_2?.classList.add("hide");
   } else {
     barsContainer_2?.classList.remove("hide");
-    barsContainer_2?.children.length == 0 && fillBoard(barsContainer_2, boardType.second);
+    barCountPreveState2 !== barsCount && fillBoard(barsContainer_2, boardType.second);
   }
 });
 
@@ -123,7 +133,7 @@ btn_2?.addEventListener("click", async () => {
   }
 });
 
-btn_1?.addEventListener("click", async () => {
+btn_4?.addEventListener("click", async () => {
   if (board_1_Elements) {
     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
     const bubbleSortInstructions = bubbleSortRUNNER(barsHeights);
@@ -136,7 +146,7 @@ btn_1?.addEventListener("click", async () => {
   }
 });
 
-btn_4?.addEventListener("click", () => {
-  PutBar(50, 50);
-  ChangeBarsColor([1, 2, 3, 4, 5, 6, 7, 8, 9], barColors.red, boardType.main);
-});
+// btn_4?.addEventListener("click", () => {
+//   PutBar(50, 50);
+//   ChangeBarsColor([1, 2, 3, 4, 5, 6, 7, 8, 9], barColors.red, boardType.main);
+// });
