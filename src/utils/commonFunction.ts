@@ -1,6 +1,13 @@
+import { store } from "../redux";
+
 export function getRandomArbitrary(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min);
 }
+
+export const isActiveAnimation = () => {
+  const { animationSpeed, barsCount, colapsePivot, animationSpeedPivot } = store.getState();
+  return animationSpeed > animationSpeedPivot && barsCount < colapsePivot;
+};
 
 export const incrementingArray = (count: number) => {
   const step = 100 / count;

@@ -13,11 +13,12 @@ import {
   swapBarAnimationAsync,
   compareBars,
 } from "./DOMFunctions/manipulate";
-import { randomizeArray } from "./algorithms/randomize/randomize";
+import { randomizeArray, randomizeArrayRUNNER } from "./algorithms/randomize/randomize";
 import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
 import { boardType, barColors, commandTypes } from "./utils/types";
 import { mergeFF, mergeSW } from "./algorithms/sorting/merge-sort/mergeSort";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
+import { isActiveAnimation } from "./utils/commonFunction";
 
 //% importing style assets
 
@@ -42,6 +43,10 @@ const btn_3 = document.querySelector("#test-btn-3");
 const btn_4 = document.querySelector("#test-btn-4");
 
 //% initializing events
+
+btn_3?.addEventListener("click", () => {
+  console.log(isActiveAnimation());
+});
 
 algoSpeed?.addEventListener("input", (e: any) => {
   store.dispatch(changeSpeed(e.target.max - e.target.value));
@@ -85,10 +90,14 @@ store.subscribe(() => {
   }
 });
 
+const res = randomizeArrayRUNNER([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+console.log(res);
+
 btn_2?.addEventListener("click", async () => {
   if (board_1_Elements && board_2_Elements) {
     const barsHeights = Array.from(board_1_Elements.keys());
     const res = randomizeArray(barsHeights);
+    console.log(res);
     for (let i = 0; i < res.length; i++) {
       const diff = res[i][0] - res[i][1];
       board_1_Elements[res[i][0]].classList.add("selected");

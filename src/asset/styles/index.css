@@ -1,5 +1,5 @@
 :root {
-  --purple-gradient: linear-gradient(0deg, rgba(85, 0, 82, 1) 0%, rgba(219, 5, 255, 1) 52%, rgba(255, 0, 134, 1) 100%);
+  --purple-gradient: linear-gradient(0deg, rgb(255, 0, 89) 0%, rgb(255, 0, 140) 100%);
   --blue-gradient: linear-gradient(0deg, rgb(0, 123, 255) 0%, rgba(0, 212, 255, 1) 100%);
   --green-gradient: linear-gradient(0deg, rgb(0, 164, 25) 0%, rgb(65, 255, 125) 100%);
   --red-gradient: linear-gradient(0deg, rgb(164, 0, 0) 0%, rgba(255, 5, 5, 0.779) 47%, rgb(255, 0, 0) 100%);
