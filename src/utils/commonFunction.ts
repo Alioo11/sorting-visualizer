@@ -1,4 +1,7 @@
 import { store } from "../redux";
+import { bubbleSortRUNNER } from "../algorithms/sorting/bubbleSort.ts/bubbleSort";
+import { insertionSortRUNNER } from "../algorithms/sorting/insertion-sort/insertionSort";
+import { algorithmTypes } from "./types";
 
 export function getRandomArbitrary(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -23,4 +26,15 @@ export const wait = (delayTime: number | undefined) => {
       delayTime ? delayTime : 300
     );
   });
+};
+
+export const runner = (algo: algorithmTypes): Function => {
+  switch (algo) {
+    case algorithmTypes.bubble_sort: {
+      return bubbleSortRUNNER;
+    }
+    case algorithmTypes.insertion_sort: {
+      return insertionSortRUNNER;
+    }
+  }
 };

@@ -19,6 +19,7 @@ import { boardType, barColors, commandTypes, algorithmTypes } from "./utils/type
 import { mergeFF, mergeSW } from "./algorithms/sorting/merge-sort/mergeSort";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
 import { isActiveAnimation } from "./utils/commonFunction";
+import { runner } from "./utils/commonFunction";
 
 import { engine } from "./utils/engine";
 
@@ -89,6 +90,21 @@ randomizeBtn?.addEventListener("click", () => {
     const barsHeights = Array.from(board_1_Elements.keys());
     const res = randomizeArrayRUNNER(barsHeights);
     isCompareMode ? engine(res, res) : engine(res);
+  }
+});
+
+startBtn?.addEventListener("click", () => {
+  if (board_1_Elements) {
+    const { compareMode, firstAlgorithm, secondAlgirithm } = store.getState();
+    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+    if (compareMode) {
+      const instructionList_1 = runner(firstAlgorithm)([...barsHeights]);
+      const instructionList_2 = runner(secondAlgirithm)([...barsHeights]);
+      engine(instructionList_1, instructionList_2);
+    } else {
+      const instructionList_1 = runner(firstAlgorithm)([...barsHeights]);
+      engine(instructionList_1);
+    }
   }
 });
 
