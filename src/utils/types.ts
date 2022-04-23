@@ -55,13 +55,10 @@ const ALGORITHMS: ALGORITHM_TYPE[] = [
   },
 ];
 
-let algorithmTypes: any = {};
-
-(function (algoNames) {
-  algoNames.forEach((item) => {
-    algorithmTypes[item.name] = item.name;
-  });
-})(ALGORITHMS);
+enum algorithmTypes {
+  bubble_sort = "bubble-sort",
+  insertion_sort = "insertion-sort",
+}
 
 enum commandTypes {
   swap,

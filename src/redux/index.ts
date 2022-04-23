@@ -1,10 +1,12 @@
 import redux from "redux";
 import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { algorithmTypes } from "../utils/types";
 
 const initialState = {
   detailMood: false,
   compareMode: false,
-  algorithm: "merge", // insert from algirithm types
+  firstAlgorithm: algorithmTypes.bubble_sort,
+  secondAlgirithm: algorithmTypes.bubble_sort,
   barsCount: 30,
   animationDuration: 500,
   colapsePivot: 100,
@@ -25,6 +27,12 @@ const counterSlice = createSlice({
     toggleCompareMode: (state) => {
       state.compareMode = !state.compareMode;
     },
+    changeFirstAlgorithm: (state, { payload }) => {
+      state.firstAlgorithm = payload;
+    },
+    changeSecondAlgorithm: (state, { payload }) => {
+      state.secondAlgirithm = payload;
+    },
   },
 });
 
@@ -33,4 +41,4 @@ const store = configureStore({
 });
 
 export { store };
-export const { changeSpeed, toggleCompareMode, changeBarsCount } = counterSlice.actions;
+export const { changeSpeed, toggleCompareMode, changeBarsCount, changeFirstAlgorithm, changeSecondAlgorithm } = counterSlice.actions;

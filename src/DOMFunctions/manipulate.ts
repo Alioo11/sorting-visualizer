@@ -75,7 +75,7 @@ export const MoveBarAnimationAsync = (barIndex: number, amount: number, type: bo
       const barLength = board_1_Elements[barIndex].getBoundingClientRect().width;
       board_1_Elements[barIndex].animate([{ transform: "" }, { transform: `translateX(${amount * (barLength + 1)}px)` }], {
         duration: animationSpeed,
-        easing: "ease-out",
+        easing: "ease",
       });
       setTimeout(() => {
         res(null);
