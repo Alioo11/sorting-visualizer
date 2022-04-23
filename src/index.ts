@@ -15,12 +15,14 @@ import {
 } from "./DOMFunctions/manipulate";
 import { randomizeArray, randomizeArrayRUNNER } from "./algorithms/randomize/randomize";
 import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
-import { boardType, barColors, commandTypes } from "./utils/types";
+import { boardType, barColors, commandTypes, algorithmTypes } from "./utils/types";
 import { mergeFF, mergeSW } from "./algorithms/sorting/merge-sort/mergeSort";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
 import { isActiveAnimation } from "./utils/commonFunction";
 
 import { engine } from "./utils/engine";
+
+import { insertionSortRUNNER } from "./algorithms/sorting/insertion-sort/insertionSort";
 
 //% importing style assets
 
@@ -32,6 +34,9 @@ const barCount = document.querySelector("#bar-count");
 const randomizeBtn = document.querySelector("#randomize");
 const startBtn = document.querySelector("#start");
 const compareModeBtn = document.querySelector("#compareMode");
+
+const algo_1_items = document.querySelectorAll(".algo_1_type");
+const algo_2_items = document.querySelectorAll(".algo_2_type");
 
 const dropDownAlgoBtn_1 = document.querySelector("#dropDownAlgorithm1");
 const dropDownAlgoBtn_2 = document.querySelector("#dropDownAlgorithm2");
@@ -46,7 +51,25 @@ const btn_4 = document.querySelector("#test-btn-4");
 
 //% initializing events
 
-btn_3?.addEventListener("click", () => {
+algo_1_items.forEach((algoItem) => {
+  algoItem.addEventListener("click", (e: any) => {
+    const algoName = e.target.id as string;
+    console.log(algoName);
+    switch (algoName) {
+      case "bubble-sort": {
+        break;
+      }
+    }
+  });
+});
+
+algo_2_items.forEach((algoItem) => {
+  algoItem.addEventListener("click", (e: any) => {
+    console.log(e.target.id);
+  });
+});
+
+randomizeBtn?.addEventListener("click", () => {
   if (board_1_Elements) {
     const isCompareMode = store.getState().compareMode;
     const barsHeights = Array.from(board_1_Elements.keys());
@@ -59,8 +82,10 @@ btn_1?.addEventListener("click", () => {
   if (board_1_Elements) {
     const isCompareMode = store.getState().compareMode;
     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
-    const res = bubbleSortRUNNER(barsHeights);
-    isCompareMode ? engine(res, res) : engine(res);
+    const res2 = insertionSortRUNNER([...barsHeights]);
+    const res = bubbleSortRUNNER([...barsHeights]);
+    console.log(res);
+    isCompareMode ? engine(res, res2) : engine(res2);
   }
 });
 
@@ -87,12 +112,12 @@ let barCountPrevState: number;
 let barCountPreveState2: number;
 store.subscribe(() => {
   const { compareMode, barsCount } = store.getState();
-  barCountPreveState2 = barsCount;
   if (!compareMode) {
     barsContainer_2?.classList.add("hide");
   } else {
     barsContainer_2?.classList.remove("hide");
     barCountPreveState2 !== barsCount && fillBoard(barsContainer_2, boardType.second);
+    compareMode && (barCountPreveState2 = barsCount);
   }
 });
 

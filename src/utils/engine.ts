@@ -8,6 +8,8 @@ export const engine = async (instructions_1: instruction[], instructions_2: inst
   const isAnimationAvtive = isActiveAnimation();
   const animationSpeed = store.getState().animationSpeed;
   if (instructions_2 && instructions_2.length !== 0) {
+    console.log(instructions_2[0]);
+    console.log(instructions_1[0]);
     for (let i = 0; i < prograpLength; i++) {
       const { animationArgs, fraction, animationFunc, mainArgs, mainFunc } = instructions_1[i];
       const { animationArgs: animationArgs2, animationFunc: animationFunc2, mainArgs: mainArgs2, mainFunc: mainFunc2 } = instructions_2[i];
