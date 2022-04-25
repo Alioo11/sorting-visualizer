@@ -1,10 +1,11 @@
-export const mergeSort: (num: number[]) => number[] = (arr: number[]) => {
-  const middle = Math.floor(arr.length / 2);
-  if (arr.length < 2) return arr;
-  const left = mergeSort(arr.slice(0, middle));
-  const right = mergeSort(arr.slice(middle, arr.length));
-  return merge(left, right);
-};
+enum mergeActionTypes {
+  stretch = "stretch",
+  raise = "raise",
+  paint = "paint",
+  put = "put",
+  compare = "compare",
+  putArray = "putArray",
+}
 
 export const merge = (left: number[], right: number[]) => {
   left.push(Infinity);
@@ -25,127 +26,172 @@ export const merge = (left: number[], right: number[]) => {
   return result.slice(0, result.length - 2);
 };
 
-const MergeLT = (array: number[], start: number, mid: number, end: number) => {
-  let L = array.slice(start, mid + 1);
-  let R = array.slice(mid + 1, end + 1);
-  L.push(Infinity);
-  R.push(Infinity);
+export const mergeSort: (num: number[]) => number[] = (arr: number[]) => {
+  const middle = Math.floor(arr.length / 2);
+  if (arr.length < 2) return arr;
+  const left = mergeSort(arr.slice(0, middle));
+  const right = mergeSort(arr.slice(middle, arr.length));
+  return merge(left, right);
+};
+
+const mergeTemp = (arr: number[], start: number, mid: number, end: number, animationData: any[]) => {
+  const st = start;
+  const md = mid + 1;
+  const ed = end + 1;
+  const left = arr.slice(start, mid + 1).concat(Infinity);
+  const right = arr.slice(mid + 1, end + 1).concat(Infinity);
   let i = 0;
   let j = 0;
-  for (let k = start; k <= end; k++) {
-    if (L[i] <= R[j]) {
-      array[k] = L[i];
+  animationData.push({ type: mergeActionTypes.paint, data: [start, end] });
+  animationData.push({ type: mergeActionTypes.raise, data: [start, end] });
+  for (let k = st; k < ed; k++) {
+    if (left[i] <= right[j]) {
+      arr[k] = left[i];
+      k !== end && animationData.push({ type: mergeActionTypes.put, data: [k, start + i, arr[start + i]] });
       i++;
     } else {
-      array[k] = R[j];
-      j++;
+      arr[k] = right[j];
+      k !== end && animationData.push({ type: mergeActionTypes.put, data: [k, md + j, arr[md + j]] });
+      j += 1;
     }
   }
-  if (array[array.length - 1] === Infinity) array.pop();
+  animationData.push({ type: mergeActionTypes.paint, data: [start, end] });
+  animationData.push({ type: mergeActionTypes.putArray, data: { from: start, is: [arr.slice(start, ed)] } });
 };
 
-export const mergeSW = (arr: number[], startIndex: number, midIndex: number, endIndex: number) => {
-  console.log("started merge with", arr.slice(startIndex, endIndex + 1));
-  const swap = (idx1: number, idx2: number) => {
-    console.log("-------------------------", idx1, idx2);
-    const temp = arr[idx1];
-    arr[idx1] = arr[idx2];
-    arr[idx2] = temp;
-  };
-
-  let i = startIndex;
-  let j = midIndex;
-
-  while (i !== endIndex && j !== endIndex) {
-    if (i === j) j++;
-    else if (arr[i] > arr[j]) {
-      swap(j, i);
-      let temp = j;
-      while (arr[temp] >= arr[temp + 1] && arr[temp + 1]) {
-        swap(temp, temp + 1);
-        temp++;
-      }
-      j++;
-    } else if (arr[i] <= arr[j]) i++;
+export const mergeSortTemp = (arr: number[], start: number = 0, end: number = arr.length, animationData = []) => {
+  if (start < end) {
+    const middle = Math.floor((start + end) / 2);
+    mergeSortTemp(arr, start, middle, animationData);
+    mergeSortTemp(arr, middle + 1, end, animationData);
+    mergeTemp(arr, start, middle, end, animationData);
   }
-  return arr;
-  //  console.log("ended merge with", arr.slice(startIndex, endIndex + 1));
+  return { arr: arr.slice(0, arr.length - 1), animationData };
 };
 
-export const mergeMMM = (arr: number[], start: number, mid: number, end: number) => {
-  console.log(`start merge function`, start, end);
+export const mergeSortRUNNER = (arr: number[]) => {
+  const strechedArr = arr.map((item) => item / 2);
 
-  const swap = (idx1: number, idx2: number) => {
-    const temp = arr[idx1];
-    arr[idx1] = arr[idx2];
-    arr[idx2] = temp;
-  };
-
-  let i = start;
-  let j = mid;
-
-  while (i !== end && j !== end) {
-    if (i === j) j++;
-    else if (arr[i] <= arr[j]) i++;
-    else if (arr[i] > arr[j]) {
-      swap(i, j);
-      let temp = j;
-      while (arr[temp] >= arr[temp + 1] && temp !== end - 1) {
-        swap(temp, temp + 1);
-        temp++;
-      }
-    }
-  }
+  console.log(mergeSortTemp(strechedArr));
 };
 
-export const mergeSortSW = (array: number[], start: number = 0, end: number = array.length) => {
-  if (end > start) {
-    let mid = Math.floor((end + start) / 2);
-    mergeSortSW(array, start, mid);
-    mergeSortSW(array, mid + 1, end);
-    //mergeMMM(array, start, mid, end);
-  }
-  return array;
-};
+// const MergeLT = (array: number[], start: number, mid: number, end: number) => {
+//   let L = array.slice(start, mid + 1);
+//   let R = array.slice(mid + 1, end + 1);
+//   L.push(Infinity);
+//   R.push(Infinity);
+//   let i = 0;
+//   let j = 0;
+//   for (let k = start; k <= end; k++) {
+//     if (L[i] <= R[j]) {
+//       array[k] = L[i];
+//       i++;
+//     } else {
+//       array[k] = R[j];
+//       j++;
+//     }
+//   }
+//   if (array[array.length - 1] === Infinity) array.pop();
+// };
 
-export const mergeFF = (arr: number[], start: number, mid: number, end: number) => {
-  console.log(`running merge function`, arr, start, mid, end);
-  //arr.push(Infinity);
+// export const mergeSW = (arr: number[], startIndex: number, midIndex: number, endIndex: number) => {
+//   console.log("started merge with", arr.slice(startIndex, endIndex + 1));
+//   const swap = (idx1: number, idx2: number) => {
+//     console.log("-------------------------", idx1, idx2);
+//     const temp = arr[idx1];
+//     arr[idx1] = arr[idx2];
+//     arr[idx2] = temp;
+//   };
 
-  const swap = (idx1: number, idx2: number) => {
-    //console.log("-------------------------", idx1, idx2);
-    const temp = arr[idx1];
-    arr[idx1] = arr[idx2];
-    arr[idx2] = temp;
-  };
+//   let i = startIndex;
+//   let j = midIndex;
 
-  let i = start;
-  let j = mid;
+//   while (i !== endIndex && j !== endIndex) {
+//     if (i === j) j++;
+//     else if (arr[i] > arr[j]) {
+//       swap(j, i);
+//       let temp = j;
+//       while (arr[temp] >= arr[temp + 1] && arr[temp + 1]) {
+//         swap(temp, temp + 1);
+//         temp++;
+//       }
+//       j++;
+//     } else if (arr[i] <= arr[j]) i++;
+//   }
+//   return arr;
+//   //  console.log("ended merge with", arr.slice(startIndex, endIndex + 1));
+// };
 
-  while (i !== end && j !== end) {
-    console.log("running while loop", arr);
-    console.log(arr[i], arr[j]);
-    console.log(i, j);
-    console.log(` i: ${i} , J: ${j}`);
-    if (i === j) j++;
-    else if (arr[i] <= arr[j]) i++;
-    else if (arr[i] > arr[j]) {
-      swap(i, j);
-      let temp = j;
-      while (arr[temp] >= arr[temp + 1] && temp !== end - 1) {
-        swap(temp, temp + 1);
-        temp++;
-      }
-    }
-  }
-  console.log("ended with", arr);
-  return arr;
-  //console.log(arr);
-};
+// export const mergeMMM = (arr: number[], start: number, mid: number, end: number) => {
+//   console.log(`start merge function`, start, end);
 
-//% these are the base functions that makes swapable merge sort possible .
-//% we may hold them as a respect :) ;
+//   const swap = (idx1: number, idx2: number) => {
+//     const temp = arr[idx1];
+//     arr[idx1] = arr[idx2];
+//     arr[idx2] = temp;
+//   };
 
+//   let i = start;
+//   let j = mid;
+
+//   while (i !== end && j !== end) {
+//     if (i === j) j++;
+//     else if (arr[i] <= arr[j]) i++;
+//     else if (arr[i] > arr[j]) {
+//       swap(i, j);
+//       let temp = j;
+//       while (arr[temp] >= arr[temp + 1] && temp !== end - 1) {
+//         swap(temp, temp + 1);
+//         temp++;
+//       }
+//     }
+//   }
+// };
+
+// export const mergeSortSW = (array: number[], start: number = 0, end: number = array.length) => {
+//   if (end > start) {
+//     let mid = Math.floor((end + start) / 2);
+//     mergeSortSW(array, start, mid);
+//     mergeSortSW(array, mid + 1, end);
+//     //mergeMMM(array, start, mid, end);
+//   }
+//   return array;
+// };
+
+// export const mergeFF = (arr: number[], start: number, mid: number, end: number) => {
+//   console.log(`running merge function`, arr, start, mid, end);
+//   //arr.push(Infinity);
+
+//   const swap = (idx1: number, idx2: number) => {
+//     //console.log("-------------------------", idx1, idx2);
+//     const temp = arr[idx1];
+//     arr[idx1] = arr[idx2];
+//     arr[idx2] = temp;
+//   };
+
+//   let i = start;
+//   let j = mid;
+
+//   while (i !== end && j !== end) {
+//     console.log("running while loop", arr);
+//     console.log(arr[i], arr[j]);
+//     console.log(i, j);
+//     console.log(` i: ${i} , J: ${j}`);
+//     if (i === j) j++;
+//     else if (arr[i] <= arr[j]) i++;
+//     else if (arr[i] > arr[j]) {
+//       swap(i, j);
+//       let temp = j;
+//       while (arr[temp] >= arr[temp + 1] && temp !== end - 1) {
+//         swap(temp, temp + 1);
+//         temp++;
+//       }
+//     }
+//   }
+//   console.log("ended with", arr);
+//   return arr;
+//   //console.log(arr);
+// };
 // export const mergeTemp = (startIndex: number, endIndex: number, arr: number[]) => {
 //   const swap = (idx1: number, idx2: number) => {
 //     const temp = arr[idx1];

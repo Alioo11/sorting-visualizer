@@ -1,5 +1,6 @@
-import { mergeSort, merge, mergeSortSW, mergeFF } from "./mergeSort";
+import { mergeSort } from "./mergeSort";
 import { getRandomArbitrary } from "../../../utils/commonFunction";
+import { mergeSortTemp } from "./mergeSort";
 
 describe("algorithms test", () => {
   const testCases = [
@@ -35,14 +36,14 @@ describe("algorithms test", () => {
     return Array.from(Array.from(Array(length).keys()), (e) => getRandomArbitrary(0, 500));
   };
 
-  // const sortTestCaseCount = 10;
-  // const sortTestCases = Array.from(Array(sortTestCaseCount).keys(), (e) => RandomArray(5));
+  const sortTestCaseCount = 10;
+  const sortTestCases = Array.from(Array(sortTestCaseCount).keys(), (e) => RandomArray(5));
 
-  // sortTestCases.forEach((item) => {
-  //   test(`testing ${item.slice(0, 30)},...`, () => {
-  //     expect(mergeSort([...item])).toEqual(item.sort((a, b) => a - b));
-  //   });
-  // });
+  sortTestCases.forEach((item) => {
+    test(`testing ${item.slice(0, 30)},...`, () => {
+      expect(mergeSortTemp([...item])).toEqual(item.sort((a, b) => a - b));
+    });
+  });
 
   // const sortTestCasesMergeSortSW = Array.from(Array(sortTestCaseCount).keys(), (e) => RandomArray(10));
 

@@ -15,13 +15,13 @@ import {
 } from "./DOMFunctions/manipulate";
 import { randomizeArray, randomizeArrayRUNNER } from "./algorithms/randomize/randomize";
 import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
-import { boardType, barColors, commandTypes, algorithmTypes } from "./utils/types";
-import { mergeFF, mergeSW } from "./algorithms/sorting/merge-sort/mergeSort";
+import { boardType, barColors, commandTypes, algorithmTypes, instruction } from "./utils/types";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
 import { isActiveAnimation } from "./utils/commonFunction";
 import { runner } from "./utils/commonFunction";
 
 import { engine } from "./utils/engine";
+import { mergeSortRUNNER, mergeSortTemp } from "./algorithms/sorting/merge-sort/mergeSort";
 
 import { insertionSortRUNNER } from "./algorithms/sorting/insertion-sort/insertionSort";
 
@@ -109,6 +109,20 @@ startBtn?.addEventListener("click", () => {
     }
   }
 });
+
+btn_3?.addEventListener("click", () => {
+  if (board_1_Elements) {
+    const { compareMode, firstAlgorithm, secondAlgirithm } = store.getState();
+    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+    mergeSortRUNNER(barsHeights);
+    //const objj = new instruction(null, swapBars, [1, 5], [1, 5]);
+    //engine([objj]);
+  }
+});
+
+// btn_3?.addEventListener("click", () => {
+//   console.log(mergeSortTemp([11, 5, 9, 69, 55, 8, 4, 9, 5, 15, 29, 95, 48, 75, 598]));
+// });
 
 btn_1?.addEventListener("click", () => {
   if (board_1_Elements) {

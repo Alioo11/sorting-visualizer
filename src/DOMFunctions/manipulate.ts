@@ -7,8 +7,8 @@ import { boardType, barColors } from "../utils/types";
 
 //% selecting DOM elements
 
-const barsContainer_1 = document.querySelector("#bars-container-1");
-const barsContainer_2 = document.querySelector("#bars-container-2");
+const barsContainer_1 = window.document.querySelector("#bars-container-1");
+const barsContainer_2 = window.document.querySelector("#bars-container-2");
 //% selecting DOM elements
 
 let board_1_Elements: HTMLDivElement[] | null = null;

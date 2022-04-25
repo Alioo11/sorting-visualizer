@@ -86,12 +86,12 @@ interface instructions {
 }
 
 class instruction {
-  animationFunc: Function;
+  animationFunc: Function | null;
   animationArgs: any[];
   mainFunc: Function | null;
   mainArgs: any[];
   fraction: number = 1;
-  constructor(animeFunc: Function, mainFunc: Function | null, animationArgs: any[], mainArgs: any[], fraction: number | null = 1) {
+  constructor(animeFunc: Function | null, mainFunc: Function | null, animationArgs: any[], mainArgs: any[], fraction: number | null = 1) {
     this.animationFunc = animeFunc;
     this.mainFunc = mainFunc;
     this.animationArgs = animationArgs;
