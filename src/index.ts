@@ -18,6 +18,7 @@ import {
   raiseAnimation,
   moveBarAndFloor,
   moveBarAndFloorAnimation,
+  changeBarsColorHELPER,
 } from "./DOMFunctions/manipulate";
 import { randomizeArray, randomizeArrayRUNNER } from "./algorithms/randomize/randomize";
 import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
@@ -120,7 +121,7 @@ btn_3?.addEventListener("click", () => {
   if (board_1_Elements) {
     const { compareMode, firstAlgorithm, secondAlgirithm } = store.getState();
     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
-    mergeSortRUNNER(barsHeights);
+    console.log(mergeSortRUNNER(barsHeights));
     //const objj = new instruction(null, swapBars, [1, 5], [1, 5]);
     //engine([objj]);
   }
@@ -234,7 +235,8 @@ btn_4?.addEventListener("click", async () => {
   await moveBarAndFloorAnimation(9, -1);
   moveBarAndFloor(9, -1);
 });
+
 btn_2?.addEventListener("click", async () => {
-  await stretchAnimation(true);
-  stretch(true);
+  const inst = new instruction(null, changeBarsColorHELPER, [5, 11, barColors.green], [5, 11, barColors.green]);
+  engine([inst]);
 });

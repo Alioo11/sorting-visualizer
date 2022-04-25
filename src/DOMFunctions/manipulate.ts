@@ -157,6 +157,10 @@ export const ChangeBarsColor = (bars: number[], color: barColors, type: boardTyp
     });
   }
 };
+export const changeBarsColorHELPER = (start: number, end: number, color: barColors) => {
+  const range = Array.from(Array(end - start).keys(), (e) => e + start);
+  ChangeBarsColor(range, color);
+};
 
 export const compareBars = async (barIndex_1: number, barIndex_2: number, type: boardType = boardType.main) => {
   const animationSpeed = store.getState().animationSpeed;

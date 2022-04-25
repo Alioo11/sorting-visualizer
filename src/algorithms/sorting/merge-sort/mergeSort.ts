@@ -1,3 +1,8 @@
+import { DETAIL_PIVOT } from "../../../utils/types";
+import { instruction } from "../../../utils/types";
+import { barColors } from "../../../utils/types";
+import { stretch, changeBarsColorHELPER, raiseAnimation, raise, moveBarAndFloor, moveBarAndFloorAnimation } from "../../../DOMFunctions/manipulate";
+
 enum mergeActionTypes {
   stretch = "stretch",
   raise = "raise",
@@ -5,6 +10,11 @@ enum mergeActionTypes {
   put = "put",
   compare = "compare",
   putArray = "putArray",
+}
+
+interface rowInstruct {
+  type: mergeActionTypes;
+  data: any[];
 }
 
 export const merge = (left: number[], right: number[]) => {
@@ -38,12 +48,13 @@ const mergeTemp = (arr: number[], start: number, mid: number, end: number, anima
   const st = start;
   const md = mid + 1;
   const ed = end + 1;
+  const arrSize = arr.length;
   const left = arr.slice(start, mid + 1).concat(Infinity);
   const right = arr.slice(mid + 1, end + 1).concat(Infinity);
   let i = 0;
   let j = 0;
-  animationData.push({ type: mergeActionTypes.paint, data: [start, end] });
-  animationData.push({ type: mergeActionTypes.raise, data: [start, end] });
+  arrSize < DETAIL_PIVOT && animationData.push({ type: mergeActionTypes.paint, data: [start, end] });
+  arrSize < DETAIL_PIVOT && animationData.push({ type: mergeActionTypes.raise, data: [start, end] });
   for (let k = st; k < ed; k++) {
     if (left[i] <= right[j]) {
       arr[k] = left[i];
@@ -55,11 +66,13 @@ const mergeTemp = (arr: number[], start: number, mid: number, end: number, anima
       j += 1;
     }
   }
-  animationData.push({ type: mergeActionTypes.paint, data: [start, end] });
-  animationData.push({ type: mergeActionTypes.putArray, data: { from: start, is: [arr.slice(start, ed)] } });
+  // arrSize < DETAIL_PIVOT && animationData.push({ type: mergeActionTypes.paint, data: [start, end] });
+  //% replace array with a snapshot of the array at this moment
+  arrSize < DETAIL_PIVOT &&
+    animationData.push({ type: mergeActionTypes.putArray, data: arr[arr.length - 1] == Infinity ? [...arr.slice(0, arr.length - 1)] : [...arr] });
 };
 
-export const mergeSortTemp = (arr: number[], start: number = 0, end: number = arr.length, animationData = []) => {
+export const mergeSortTemp = (arr: number[], start: number = 0, end: number = arr.length, animationData: rowInstruct[] = []) => {
   if (start < end) {
     const middle = Math.floor((start + end) / 2);
     mergeSortTemp(arr, start, middle, animationData);
@@ -71,8 +84,23 @@ export const mergeSortTemp = (arr: number[], start: number = 0, end: number = ar
 
 export const mergeSortRUNNER = (arr: number[]) => {
   const strechedArr = arr.map((item) => item / 2);
-
-  console.log(mergeSortTemp(strechedArr));
+  const { animationData } = mergeSortTemp(strechedArr);
+  const formatedData = animationData.map((RowItem) => {
+    if (RowItem.type === mergeActionTypes.paint) {
+      return new instruction(null, changeBarsColorHELPER, [], [RowItem.data[0], RowItem.data[1], barColors.green]);
+    } else if (RowItem.type === mergeActionTypes.raise) {
+      const { data } = RowItem;
+      const range = Array.from(Array(data[1] - data[0]).keys(), (e) => e + data[0]);
+      return new instruction(raiseAnimation, raise, range, range);
+    } else if (RowItem.type === mergeActionTypes.put) {
+      const { data } = RowItem;
+      const diff = data[1] - data[0];
+      return new instruction(moveBarAndFloor, moveBarAndFloorAnimation, [data[0], diff], [data[0], diff]);
+    } else if (RowItem.type === mergeActionTypes.putArray) {
+      //% this is wher you left the project
+    }
+  });
+  return formatedData;
 };
 
 // const MergeLT = (array: number[], start: number, mid: number, end: number) => {
