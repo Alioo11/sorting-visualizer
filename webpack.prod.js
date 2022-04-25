@@ -8,7 +8,7 @@ const webpack = require("webpack");
 module.exports = merge.merge(common, {
   mode: "production",
   output: {
-    filename: "main-[contenthash].js",
+    filename: "bundle.min.js",
     path: path.resolve(__dirname, "build"),
     clean: true,
   },

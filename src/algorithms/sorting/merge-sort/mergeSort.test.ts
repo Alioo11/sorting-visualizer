@@ -27,30 +27,30 @@ describe("algorithms test", () => {
     },
   ];
 
-  testCases.forEach((item) => {
-    expect(merge(item.input[0], item.input[1])).toEqual(item.extected);
-  });
+  // testCases.forEach((item) => {
+  //   expect(merge(item.input[0], item.input[1])).toEqual(item.extected);
+  // });
 
   const RandomArray = (length: number) => {
     return Array.from(Array.from(Array(length).keys()), (e) => getRandomArbitrary(0, 500));
   };
 
-  const sortTestCaseCount = 10;
-  const sortTestCases = Array.from(Array(sortTestCaseCount).keys(), (e) => RandomArray(5));
+  // const sortTestCaseCount = 10;
+  // const sortTestCases = Array.from(Array(sortTestCaseCount).keys(), (e) => RandomArray(5));
 
-  sortTestCases.forEach((item) => {
-    test(`testing ${item.slice(0, 30)},...`, () => {
-      expect(mergeSort([...item])).toEqual(item.sort((a, b) => a - b));
-    });
-  });
+  // sortTestCases.forEach((item) => {
+  //   test(`testing ${item.slice(0, 30)},...`, () => {
+  //     expect(mergeSort([...item])).toEqual(item.sort((a, b) => a - b));
+  //   });
+  // });
 
-  const sortTestCasesMergeSortSW = Array.from(Array(sortTestCaseCount).keys(), (e) => RandomArray(10));
+  // const sortTestCasesMergeSortSW = Array.from(Array(sortTestCaseCount).keys(), (e) => RandomArray(10));
 
-  sortTestCasesMergeSortSW.forEach((item) => {
-    test(`testing merge sort swaping ${item.slice(0, 30)},...`, () => {
-      expect(mergeSortSW([...item])).toEqual(item.sort((a, b) => a - b));
-    });
-  });
+  // sortTestCasesMergeSortSW.forEach((item) => {
+  //   test(`testing merge sort swaping ${item.slice(0, 30)},...`, () => {
+  //     expect(mergeSortSW([...item])).toEqual(item.sort((a, b) => a - b));
+  //   });
+  // });
 
   //% testing merge function here
 
@@ -63,31 +63,31 @@ describe("algorithms test", () => {
     { arr: [4, 5, 2], expected: [2, 4, 5] },
   ];
 
-  const generateSortedRandomArray = (length: number, range = 100) => {
-    return Array.from(Array(length).keys(), (e) => getRandomArbitrary(0, range)).sort((a, b) => a - b);
-  };
+  // const generateSortedRandomArray = (length: number, range = 100) => {
+  //   return Array.from(Array(length).keys(), (e) => getRandomArbitrary(0, range)).sort((a, b) => a - b);
+  // };
 
-  const generateTest = (testCount = 10) => {
-    const sum = [];
-    for (let i = 0; i < testCount; i++) {
-      const a = generateSortedRandomArray(20);
-      const b = generateSortedRandomArray(20);
-      const testObject = {
-        arr: a.concat(b),
-        expected: a.concat(b).sort((a, b) => a - b),
-      };
-      sum.push(testObject);
-    }
-    return sum;
-  };
+  // const generateTest = (testCount = 10) => {
+  //   const sum = [];
+  //   for (let i = 0; i < testCount; i++) {
+  //     const a = generateSortedRandomArray(20);
+  //     const b = generateSortedRandomArray(20);
+  //     const testObject = {
+  //       arr: a.concat(b),
+  //       expected: a.concat(b).sort((a, b) => a - b),
+  //     };
+  //     sum.push(testObject);
+  //   }
+  //   return sum;
+  // };
 
-  const automatedMergeTestCases = generateTest(100);
+  // const automatedMergeTestCases = generateTest(100);
 
-  const spesicalCase = { arr: [130, 3, 121, 140, 19, 73, 251], expected: [130, 3, 121, 140, 19, 73, 251] };
+  // const spesicalCase = { arr: [130, 3, 121, 140, 19, 73, 251], expected: [130, 3, 121, 140, 19, 73, 251] };
 
-  test("spesial", () => {
-    expect(mergeFF(spesicalCase.arr, 0, 1, 1)).toEqual(spesicalCase.expected);
-  });
+  // test("spesial", () => {
+  //   expect(mergeFF(spesicalCase.arr, 0, 1, 1)).toEqual(spesicalCase.expected);
+  // });
 
   // mergeTestCases.forEach((item) => {
   //   test(`testing merge function with ${item.arr}`, () => {

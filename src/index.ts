@@ -36,6 +36,8 @@ const randomizeBtn = document.querySelector("#randomize");
 const startBtn = document.querySelector("#start");
 const compareModeBtn = document.querySelector("#compareMode");
 
+const barsCountSpan = document.querySelector("#bars-count-span");
+
 const algo_1_items = document.querySelectorAll(".algo_1_type");
 const algo_2_items = document.querySelectorAll(".algo_2_type");
 
@@ -113,7 +115,9 @@ btn_1?.addEventListener("click", () => {
     const isCompareMode = store.getState().compareMode;
     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
     const res2 = insertionSortRUNNER([...barsHeights]);
+
     const res = bubbleSortRUNNER([...barsHeights]);
+    console.log(res);
     isCompareMode ? engine(res, res2) : engine(res);
   }
 });
@@ -153,6 +157,7 @@ store.subscribe(() => {
 store.subscribe(() => {
   const { compareMode, barsCount } = store.getState();
   if (barCountPrevState !== barsCount) {
+    barsCountSpan && (barsCountSpan.innerHTML = `${barsCount}`);
     barCountPrevState = barsCount;
     const incrementingArr = incrementingArray(barsCount);
     putArryAtElement(incrementingArr, boardType.main);

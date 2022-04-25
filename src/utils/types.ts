@@ -5,6 +5,8 @@ interface ALGORITHM_TYPE {
   code?: string;
 }
 
+export const DETAIL_PIVOT = 50;
+
 const ALGORITHMS: ALGORITHM_TYPE[] = [
   {
     name: "bubble-sort",

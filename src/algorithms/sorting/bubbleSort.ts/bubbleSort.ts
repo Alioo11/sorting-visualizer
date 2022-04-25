@@ -1,7 +1,7 @@
 import { swapBars, compareBars, swapBarAnimationAsync } from "../../../DOMFunctions/manipulate";
-import { instruction } from "../../../utils/types";
+import { instruction, DETAIL_PIVOT } from "../../../utils/types";
 
-const BUBBLE_SORT_DETAIL_PIVOT = 50;
+const BUBBLE_SORT_DETAIL_PIVOT = DETAIL_PIVOT;
 
 enum actionTypes {
   compare,
