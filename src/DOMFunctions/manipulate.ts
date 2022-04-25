@@ -169,4 +169,92 @@ export const compareBars = async (barIndex_1: number, barIndex_2: number, type: 
   });
 };
 
+export const stretchAnimation = (squize: boolean = true, type: boardType = boardType.main) => {
+  const animationSpeed = store.getState().animationSpeed;
+  return new Promise((res) => {
+    if (type === boardType.main && board_1_Elements) {
+      board_1_Elements.forEach((barItem) => {
+        let newHeight = parseFloat(barItem.style.height);
+        newHeight = squize ? newHeight / 2 : newHeight * 2;
+        barItem.animate([{ transform: "" }, { height: `${newHeight}%` }], {
+          duration: animationSpeed,
+          easing: "ease-out",
+        });
+      });
+    }
+    if (type === boardType.second && board_2_Elements) {
+      board_2_Elements.forEach((barItem) => {
+        let newHeight = parseFloat(barItem.style.height);
+        newHeight = squize ? newHeight / 2 : newHeight * 2;
+        barItem.animate([{ transform: "" }, { height: `${newHeight}%` }], {
+          duration: animationSpeed,
+          easing: "ease-out",
+        });
+      });
+    }
+    setTimeout(() => {
+      res(null);
+    }, animationSpeed);
+  });
+};
+
+export const stretch = (squize: boolean = true, type: boardType = boardType.main) => {
+  if (type === boardType.main && board_1_Elements) {
+    board_1_Elements.forEach((barItem) => {
+      let newHeight = parseFloat(barItem.style.height);
+      newHeight = squize ? newHeight / 2 : newHeight * 2;
+      barItem.style.height = ` ${newHeight}%`;
+    });
+  }
+  if (type === boardType.second && board_2_Elements) {
+    board_2_Elements.forEach((barItem) => {
+      let newHeight = parseFloat(barItem.style.height);
+      newHeight = squize ? newHeight / 2 : newHeight * 2;
+      barItem.style.height = ` ${newHeight}%`;
+    });
+  }
+};
+
+export const raiseAnimation = (arr: number[], type: boardType = boardType.main) => {
+  const animationSpeed = store.getState().animationSpeed;
+  return new Promise((res) => {
+    if (type === boardType.main && barsContainer_1 && board_1_Elements) {
+      const containerHeight = barsContainer_1.getClientRects()[0].height / 2;
+      arr.forEach((barItem) => {
+        board_1_Elements &&
+          board_1_Elements[barItem].animate([{ transform: `` }, { transform: `translateY(${containerHeight}px)` }], {
+            duration: animationSpeed,
+            easing: "ease-out",
+          });
+      });
+    } else if (type === boardType.second && barsContainer_2 && board_2_Elements) {
+      const containerHeight = barsContainer_2.getClientRects()[0].height / 2;
+      arr.forEach((barItem) => {
+        board_2_Elements &&
+          board_2_Elements[barItem].animate([{ transform: `` }, { transform: `translateY(${containerHeight}px)` }], {
+            duration: animationSpeed,
+            easing: "ease-out",
+          });
+      });
+    }
+    setTimeout(() => {
+      res(null);
+    }, animationSpeed);
+  });
+};
+
+export const raise = (arr: number[], type: boardType = boardType.main) => {
+  if (type === boardType.main && barsContainer_1 && board_1_Elements) {
+    const containerHeight = barsContainer_1.getClientRects()[0].height / 2;
+    arr.forEach((barItem) => {
+      board_1_Elements && (board_1_Elements[barItem].style.transform = `translateY(${containerHeight}px)`);
+    });
+  } else if (type === boardType.second && barsContainer_2 && board_2_Elements) {
+    const containerHeight = barsContainer_2.getClientRects()[0].height / 2;
+    arr.forEach((barItem) => {
+      board_2_Elements && (board_2_Elements[barItem].style.transform = `translateY(${containerHeight}px)`);
+    });
+  }
+};
+
 export { board_1_Elements, board_2_Elements };

@@ -12,6 +12,10 @@ import {
   ChangeBarsColor,
   swapBarAnimationAsync,
   compareBars,
+  stretch,
+  stretchAnimation,
+  raise,
+  raiseAnimation,
 } from "./DOMFunctions/manipulate";
 import { randomizeArray, randomizeArrayRUNNER } from "./algorithms/randomize/randomize";
 import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
@@ -120,10 +124,6 @@ btn_3?.addEventListener("click", () => {
   }
 });
 
-// btn_3?.addEventListener("click", () => {
-//   console.log(mergeSortTemp([11, 5, 9, 69, 55, 8, 4, 9, 5, 15, 29, 95, 48, 75, 598]));
-// });
-
 btn_1?.addEventListener("click", () => {
   if (board_1_Elements) {
     const isCompareMode = store.getState().compareMode;
@@ -184,32 +184,32 @@ store.subscribe(() => {
   //console.log(store.getState().firstAlgorithm, store.getState().secondAlgirithm);
 });
 
-btn_2?.addEventListener("click", async () => {
-  if (board_1_Elements && board_2_Elements) {
-    const barsHeights = Array.from(board_1_Elements.keys());
-    const res = randomizeArray(barsHeights);
-    for (let i = 0; i < res.length; i++) {
-      const diff = res[i][0] - res[i][1];
-      board_1_Elements[res[i][0]].classList.add("selected");
-      board_1_Elements[res[i][1]].classList.add("selected");
-      board_2_Elements[res[i][0]].classList.add("selected");
-      board_2_Elements[res[i][1]].classList.add("selected");
-      //await wait(50);
-      if (store.getState().animationSpeed > 200) {
-        await Promise.all([swapBarAnimationAsync(res[i][0], res[i][1]), swapBarAnimationAsync(res[i][0], res[i][1], boardType.second)]);
-      } else {
-        await wait(store.getState().animationSpeed);
-      }
-      board_1_Elements[res[i][0]].classList.remove("selected");
-      board_1_Elements[res[i][1]].classList.remove("selected");
-      board_2_Elements[res[i][0]].classList.remove("selected");
-      board_2_Elements[res[i][1]].classList.remove("selected");
+// btn_2?.addEventListener("click", async () => {
+//   if (board_1_Elements && board_2_Elements) {
+//     const barsHeights = Array.from(board_1_Elements.keys());
+//     const res = randomizeArray(barsHeights);
+//     for (let i = 0; i < res.length; i++) {
+//       const diff = res[i][0] - res[i][1];
+//       board_1_Elements[res[i][0]].classList.add("selected");
+//       board_1_Elements[res[i][1]].classList.add("selected");
+//       board_2_Elements[res[i][0]].classList.add("selected");
+//       board_2_Elements[res[i][1]].classList.add("selected");
+//       //await wait(50);
+//       if (store.getState().animationSpeed > 200) {
+//         await Promise.all([swapBarAnimationAsync(res[i][0], res[i][1]), swapBarAnimationAsync(res[i][0], res[i][1], boardType.second)]);
+//       } else {
+//         await wait(store.getState().animationSpeed);
+//       }
+//       board_1_Elements[res[i][0]].classList.remove("selected");
+//       board_1_Elements[res[i][1]].classList.remove("selected");
+//       board_2_Elements[res[i][0]].classList.remove("selected");
+//       board_2_Elements[res[i][1]].classList.remove("selected");
 
-      swapBars(res[i][0], res[i][1]);
-      swapBars(res[i][0], res[i][1], boardType.second);
-    }
-  }
-});
+//       swapBars(res[i][0], res[i][1]);
+//       swapBars(res[i][0], res[i][1], boardType.second);
+//     }
+//   }
+// });
 
 // btn_4?.addEventListener("click", async () => {
 //   if (board_1_Elements) {
@@ -224,7 +224,11 @@ btn_2?.addEventListener("click", async () => {
 //   }
 // });
 
-btn_4?.addEventListener("click", () => {
-  PutBar(50, 50);
-  ChangeBarsColor([50, 90], barColors.green, boardType.main);
+btn_4?.addEventListener("click", async () => {
+  await raiseAnimation([5, 6, 7, 8, 9, 10], boardType.second);
+  raise([5, 6, 7, 8, 9, 10], boardType.second);
+});
+btn_2?.addEventListener("click", async () => {
+  await stretchAnimation(true);
+  stretch(true);
 });
