@@ -16,6 +16,8 @@ import {
   stretchAnimation,
   raise,
   raiseAnimation,
+  moveBarAndFloor,
+  moveBarAndFloorAnimation,
 } from "./DOMFunctions/manipulate";
 import { randomizeArray, randomizeArrayRUNNER } from "./algorithms/randomize/randomize";
 import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
@@ -225,8 +227,12 @@ store.subscribe(() => {
 // });
 
 btn_4?.addEventListener("click", async () => {
-  await raiseAnimation([5, 6, 7, 8, 9, 10], boardType.second);
-  raise([5, 6, 7, 8, 9, 10], boardType.second);
+  await raiseAnimation([8, 9]);
+  raise([8, 9]);
+  await moveBarAndFloorAnimation(8, 1);
+  moveBarAndFloor(8, 1);
+  await moveBarAndFloorAnimation(9, -1);
+  moveBarAndFloor(9, -1);
 });
 btn_2?.addEventListener("click", async () => {
   await stretchAnimation(true);

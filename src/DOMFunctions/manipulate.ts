@@ -247,6 +247,7 @@ export const raise = (arr: number[], type: boardType = boardType.main) => {
   if (type === boardType.main && barsContainer_1 && board_1_Elements) {
     const containerHeight = barsContainer_1.getClientRects()[0].height / 2;
     arr.forEach((barItem) => {
+      console.log("moving bar up ", containerHeight);
       board_1_Elements && (board_1_Elements[barItem].style.transform = `translateY(${containerHeight}px)`);
     });
   } else if (type === boardType.second && barsContainer_2 && board_2_Elements) {
@@ -254,6 +255,35 @@ export const raise = (arr: number[], type: boardType = boardType.main) => {
     arr.forEach((barItem) => {
       board_2_Elements && (board_2_Elements[barItem].style.transform = `translateY(${containerHeight}px)`);
     });
+  }
+};
+
+export const moveBarAndFloorAnimation = (barIndex: number, amount: number, type: boardType = boardType.main) => {
+  const animationSpeed = store.getState().animationSpeed;
+  return new Promise((res) => {
+    if (type === boardType.main && board_1_Elements) {
+      const barLength = board_1_Elements[barIndex].getBoundingClientRect().width + 1;
+      board_1_Elements[barIndex].animate([{ transform: "" }, { transform: `translate(${amount * barLength}px , ${0}px)` }], {
+        duration: animationSpeed,
+        easing: "ease-out",
+      });
+    } else if (type === boardType.second && board_2_Elements) {
+      const barLength = board_2_Elements[barIndex].getBoundingClientRect().width + 1;
+      board_2_Elements[barIndex].style.transform = `translate(${amount * barLength}px , ${0}px)`;
+    }
+    setTimeout(() => {
+      res(null);
+    }, animationSpeed);
+  });
+};
+
+export const moveBarAndFloor = (barIndex: number, amount: number, type: boardType = boardType.main) => {
+  if (type === boardType.main && board_1_Elements) {
+    const barLength = board_1_Elements[barIndex].getBoundingClientRect().width + 1;
+    board_1_Elements[barIndex].style.transform = `translate(${amount * barLength}px , ${0}px)`;
+  } else if (type === boardType.second && board_2_Elements) {
+    const barLength = board_2_Elements[barIndex].getBoundingClientRect().width + 1;
+    board_2_Elements[barIndex].style.transform = `translate(${amount * barLength}px , ${0}px)`;
   }
 };
 
