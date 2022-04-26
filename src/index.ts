@@ -73,6 +73,11 @@ algo_1_items.forEach((algoItem) => {
         store.dispatch(changeFirstAlgorithm(algorithmTypes.insertion_sort));
         break;
       }
+      case "merge-sort": {
+        console.log("first one ");
+        store.dispatch(changeFirstAlgorithm(algorithmTypes.merge_sort));
+        break;
+      }
     }
   });
 });
@@ -87,6 +92,11 @@ algo_2_items.forEach((algoItem) => {
       }
       case "insertion-sort": {
         store.dispatch(changeSecondAlgorithm(algorithmTypes.insertion_sort));
+        break;
+      }
+      case "merge-sort": {
+        console.log("second one ");
+        store.dispatch(changeSecondAlgorithm(algorithmTypes.merge_sort));
         break;
       }
     }
@@ -180,6 +190,11 @@ store.subscribe(() => {
     putArryAtElement(incrementingArr, boardType.main);
     compareMode && putArryAtElement(incrementingArr, boardType.second);
   }
+});
+
+store.subscribe(() => {
+  const { firstAlgorithm, secondAlgirithm } = store.getState();
+  console.log(firstAlgorithm, secondAlgirithm);
 });
 
 // btn_2?.addEventListener("click", async () => {
