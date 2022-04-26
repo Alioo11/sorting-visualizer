@@ -1,6 +1,7 @@
 import { DETAIL_PIVOT } from "../../../utils/types";
 import { instruction } from "../../../utils/types";
 import { barColors } from "../../../utils/types";
+import { wait } from "../../../utils/commonFunction";
 import {
   stretch,
   stretchAnimation,
@@ -10,6 +11,7 @@ import {
   moveBarAndFloor,
   moveBarAndFloorAnimation,
   putArryAtElement,
+  PutBar,
 } from "../../../DOMFunctions/manipulate";
 
 enum mergeActionTypes {
@@ -19,6 +21,7 @@ enum mergeActionTypes {
   put = "put",
   compare = "compare",
   putArray = "putArray",
+  putAt = "putAt",
 }
 
 interface rowInstruct {
@@ -62,28 +65,34 @@ const mergeTemp = (arr: number[], start: number, mid: number, end: number, anima
   const right = arr.slice(mid + 1, end + 1).concat(Infinity);
   let i = 0;
   let j = 0;
-  animationData.push({ type: mergeActionTypes.paint, data: [start, end] });
-  animationData.push({ type: mergeActionTypes.raise, data: [start, end] });
+  DETAIL_PIVOT > arr.length && animationData.push({ type: mergeActionTypes.paint, data: [start, end] });
+  DETAIL_PIVOT > arr.length && animationData.push({ type: mergeActionTypes.raise, data: [start, end] });
   //console.log([...arr]);
   for (let k = st; k < ed; k++) {
     if (left[i] < right[j]) {
       arr[k] = left[i];
-
-      k !== arr.length - 1 && start + i !== arr.length - 1 && animationData.push({ type: mergeActionTypes.put, data: [start + i, k] });
-
+      if (k !== arr.length - 1 && start + i !== arr.length - 1) {
+        if (DETAIL_PIVOT > arr.length) {
+          animationData.push({ type: mergeActionTypes.put, data: [start + i, k] });
+        } else {
+          animationData.push({ type: mergeActionTypes.putAt, data: [k, arr[k]] });
+        }
+      }
       i++;
     } else {
       arr[k] = right[j];
-
-      k !== arr.length - 1 && md + j !== arr.length - 1 && animationData.push({ type: mergeActionTypes.put, data: [md + j, k] });
-
+      if (k !== arr.length - 1 && md + j !== arr.length - 1) {
+        if (DETAIL_PIVOT > arr.length) {
+          animationData.push({ type: mergeActionTypes.put, data: [md + j, k] });
+        } else {
+          animationData.push({ type: mergeActionTypes.putAt, data: [k, arr[md + j]] });
+        }
+      }
       j += 1;
     }
   }
-  // arrSize < DETAIL_PIVOT && animationData.push({ type: mergeActionTypes.paint, data: [start, end] });
-  //% replace array with a snapshot of the array at this moment
-
-  animationData.push({ type: mergeActionTypes.putArray, data: arr[arr.length - 1] == Infinity ? [...arr.slice(0, arr.length - 1)] : [...arr] });
+  DETAIL_PIVOT > arr.length &&
+    animationData.push({ type: mergeActionTypes.putArray, data: arr[arr.length - 1] == Infinity ? [...arr.slice(0, arr.length - 1)] : [...arr] });
 };
 
 export const mergeSortTemp = (arr: number[], start: number = 0, end: number = arr.length, animationData: rowInstruct[] = []) => {
@@ -98,8 +107,8 @@ export const mergeSortTemp = (arr: number[], start: number = 0, end: number = ar
 
 export const mergeSortRUNNER = (arr: number[]) => {
   const strechedArr = arr.map((item) => item / 2);
-  const { animationData } = mergeSortTemp(strechedArr);
-
+  const { animationData } = DETAIL_PIVOT > arr.length ? mergeSortTemp(strechedArr) : mergeSortTemp(arr);
+  console.log(animationData);
   const formatedData = animationData.map((RowItem) => {
     if (RowItem.type === mergeActionTypes.paint) {
       const { data } = RowItem;
@@ -114,15 +123,23 @@ export const mergeSortRUNNER = (arr: number[]) => {
       const { data } = RowItem;
       const diff = data[1] - data[0];
       return new instruction(moveBarAndFloorAnimation, moveBarAndFloor, [data[0], diff], [data[0], diff]);
+    } else if (RowItem.type === mergeActionTypes.putAt) {
+      const { data } = RowItem;
+      return new instruction(null, PutBar, [data[0], data[1]], [data[0], data[1]]);
     } else {
       return new instruction(null, putArryAtElement, [RowItem.data], [RowItem.data]);
     }
   });
-  return (
-    [new instruction(stretchAnimation, stretch, [true], [true])]
-      .concat(formatedData)
-      .concat([new instruction(stretchAnimation, stretch, [false], [false])]) || []
-  );
+
+  if (DETAIL_PIVOT > arr.length) {
+    return (
+      [new instruction(stretchAnimation, stretch, [true], [true])]
+        .concat(formatedData)
+        .concat([new instruction(stretchAnimation, stretch, [false], [false])]) || []
+    );
+  } else {
+    return formatedData;
+  }
 };
 
 // const MergeLT = (array: number[], start: number, mid: number, end: number) => {
