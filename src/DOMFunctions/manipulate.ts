@@ -32,7 +32,7 @@ export const initBoards = () => {
   !compareMode && barsContainer_2?.classList.add("hide");
 };
 
-export const putArryAtElement = (elements: number[], type: boardType) => {
+export const putArryAtElement = (elements: number[], type: boardType = boardType.main) => {
   const bars = createBars(elements);
   if (type === boardType.main) {
     board_1_Elements = bars;
@@ -157,8 +157,8 @@ export const ChangeBarsColor = (bars: number[], color: barColors, type: boardTyp
     });
   }
 };
-export const changeBarsColorHELPER = (start: number, end: number, color: barColors) => {
-  const range = Array.from(Array(end - start).keys(), (e) => e + start);
+export const changeBarsColorHELPER = (start: number, end: number, adder: number, color: barColors) => {
+  const range = Array.from(Array(end - start + adder).keys(), (e) => e + start);
   ChangeBarsColor(range, color);
 };
 
@@ -251,7 +251,6 @@ export const raise = (arr: number[], type: boardType = boardType.main) => {
   if (type === boardType.main && barsContainer_1 && board_1_Elements) {
     const containerHeight = barsContainer_1.getClientRects()[0].height / 2;
     arr.forEach((barItem) => {
-      console.log("moving bar up ", containerHeight);
       board_1_Elements && (board_1_Elements[barItem].style.transform = `translateY(${containerHeight}px)`);
     });
   } else if (type === boardType.second && barsContainer_2 && board_2_Elements) {

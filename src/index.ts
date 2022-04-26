@@ -117,15 +117,15 @@ startBtn?.addEventListener("click", () => {
   }
 });
 
-btn_3?.addEventListener("click", () => {
-  if (board_1_Elements) {
-    const { compareMode, firstAlgorithm, secondAlgirithm } = store.getState();
-    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
-    console.log(mergeSortRUNNER(barsHeights));
-    //const objj = new instruction(null, swapBars, [1, 5], [1, 5]);
-    //engine([objj]);
-  }
-});
+// btn_3?.addEventListener("click", () => {
+//   if (board_1_Elements) {
+//     const { compareMode, firstAlgorithm, secondAlgirithm } = store.getState();
+//     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+//     console.log(mergeSortRUNNER(barsHeights));
+//     //const objj = new instruction(null, swapBars, [1, 5], [1, 5]);
+//     //engine([objj]);
+//   }
+// });
 
 btn_1?.addEventListener("click", () => {
   if (board_1_Elements) {
@@ -237,6 +237,11 @@ btn_4?.addEventListener("click", async () => {
 });
 
 btn_2?.addEventListener("click", async () => {
-  const inst = new instruction(null, changeBarsColorHELPER, [5, 11, barColors.green], [5, 11, barColors.green]);
-  engine([inst]);
+  if (board_1_Elements) {
+    const { compareMode, firstAlgorithm, secondAlgirithm } = store.getState();
+    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+    const instructions = mergeSortRUNNER(barsHeights);
+    console.log(instructions);
+    engine(instructions);
+  }
 });
