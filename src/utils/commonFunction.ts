@@ -2,6 +2,7 @@ import { store } from "../redux";
 import { bubbleSortRUNNER } from "../algorithms/sorting/bubbleSort.ts/bubbleSort";
 import { insertionSortRUNNER } from "../algorithms/sorting/insertion-sort/insertionSort";
 import { algorithmTypes } from "./types";
+import { mergeSortRUNNER } from "../algorithms/sorting/merge-sort/mergeSort";
 
 export function getRandomArbitrary(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -35,6 +36,9 @@ export const runner = (algo: algorithmTypes): Function => {
     }
     case algorithmTypes.insertion_sort: {
       return insertionSortRUNNER;
+    }
+    case algorithmTypes.merge_sort: {
+      return mergeSortRUNNER;
     }
   }
 };

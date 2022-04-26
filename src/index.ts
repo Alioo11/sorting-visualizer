@@ -182,11 +182,6 @@ store.subscribe(() => {
   }
 });
 
-store.subscribe(() => {
-  //! update UI
-  //console.log(store.getState().firstAlgorithm, store.getState().secondAlgirithm);
-});
-
 // btn_2?.addEventListener("click", async () => {
 //   if (board_1_Elements && board_2_Elements) {
 //     const barsHeights = Array.from(board_1_Elements.keys());

@@ -60,6 +60,7 @@ const ALGORITHMS: ALGORITHM_TYPE[] = [
 enum algorithmTypes {
   bubble_sort = "bubble-sort",
   insertion_sort = "insertion-sort",
+  merge_sort = "merge-sort ",
 }
 
 enum commandTypes {
