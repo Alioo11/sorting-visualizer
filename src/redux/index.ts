@@ -19,7 +19,16 @@ const counterSlice = createSlice({
   initialState: initialState,
   reducers: {
     changeBarsCount: (state, { payload }) => {
-      state.barsCount = parseInt(payload);
+      const barCount = parseInt(payload);
+      state.barsCount = barCount;
+
+      if (barCount > 100) {
+        state.animationSpeed = 1;
+      } else if (barCount > 50) {
+        state.animationSpeed = 200 - parseInt(payload);
+      } else {
+        state.animationSpeed = 500 - parseInt(payload);
+      }
     },
     changeSpeed: (state, { payload }) => {
       state.animationSpeed = parseInt(payload);

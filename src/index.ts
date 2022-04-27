@@ -149,9 +149,9 @@ btn_1?.addEventListener("click", () => {
   }
 });
 
-algoSpeed?.addEventListener("input", (e: any) => {
-  store.dispatch(changeSpeed(e.target.max - e.target.value));
-});
+// algoSpeed?.addEventListener("input", (e: any) => {
+//   store.dispatch(changeSpeed(e.target.max - e.target.value));
+// });
 
 barCount?.addEventListener("input", (e: any) => {
   store.dispatch(changeBarsCount(e.target.value));
@@ -190,11 +190,6 @@ store.subscribe(() => {
     putArryAtElement(incrementingArr, boardType.main);
     compareMode && putArryAtElement(incrementingArr, boardType.second);
   }
-});
-
-store.subscribe(() => {
-  const { firstAlgorithm, secondAlgirithm } = store.getState();
-  console.log(firstAlgorithm, secondAlgirithm);
 });
 
 // btn_2?.addEventListener("click", async () => {
