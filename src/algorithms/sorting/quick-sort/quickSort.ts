@@ -5,7 +5,7 @@ const swap = (arr: number[], i: number, j: number) => {
 };
 
 const partition = (arr: number[], low: number, high: number) => {
-  const pivot = arr[low];
+  const pivot = arr[high];
   let i = low - 1;
   for (let j = low; j <= high - 1; j++) {
     if (arr[j] < pivot) {
@@ -17,7 +17,7 @@ const partition = (arr: number[], low: number, high: number) => {
   return i + 1;
 };
 
-const quickSort = (arr: number[], low: number, high: number) => {
+export const quickSort = (arr: number[], low: number = 0, high: number = arr.length - 1) => {
   if (low < high) {
     let PI = partition(arr, low, high);
     quickSort(arr, low, PI - 1);
