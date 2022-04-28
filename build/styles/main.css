@@ -74,11 +74,11 @@ body {
   padding: 0 1rem;
   margin: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 .nav-row > :nth-child(n) {
-  padding: 0 0.5rem;
+  padding: 0 3rem;
 }
 
 .logo-container {
