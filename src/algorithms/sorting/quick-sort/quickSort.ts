@@ -25,3 +25,5 @@ export const quickSort = (arr: number[], low: number = 0, high: number = arr.len
   }
   return arr;
 };
+
+export const quickSortRUNNER = (arr: number[]) => {};

@@ -27,7 +27,7 @@ const counterSlice = createSlice({
       } else if (barCount > 50) {
         state.animationSpeed = 200 - parseInt(payload);
       } else {
-        state.animationSpeed = 500 - parseInt(payload);
+        state.animationSpeed = 400 - parseInt(payload);
       }
     },
     changeSpeed: (state, { payload }) => {
