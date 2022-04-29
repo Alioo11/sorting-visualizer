@@ -1,6 +1,6 @@
 :root {
   --purple-gradient: linear-gradient(0deg, rgb(255, 0, 89) 0%, rgb(255, 0, 140) 100%);
-  --blue-gradient: linear-gradient(70deg, rgb(0, 64, 255) 0%, rgba(0, 212, 255, 1) 100%);
+  --blue-gradient: linear-gradient(70deg, rgb(115, 0, 255) 0%, rgb(0, 64, 255) 100%);
   --green-gradient: linear-gradient(0deg, rgb(0, 164, 25) 0%, rgb(65, 255, 125) 100%);
   --red-gradient: linear-gradient(0deg, rgb(164, 0, 0) 0%, rgba(255, 5, 5, 0.779) 47%, rgb(255, 0, 0) 100%);
   --gray: #707070;
@@ -76,7 +76,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid gray;
 }
+
 .nav-row > :nth-child(n) {
   padding: 0 3rem;
 }
@@ -113,9 +115,12 @@ body {
 
 .boards-container {
   background-color: rgb(232, 232, 232);
-  height: 450px;
-  display: flex;
-  flex-direction: column;
+  height: 75vh;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  /* display: flex; */
+  /* flex-direction: row; */
 }
 
 .bars-container {
@@ -123,16 +128,35 @@ body {
   padding: 1rem;
   width: 95%;
   margin: 1rem auto;
-  flex: auto;
+  /* flex: auto; */
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   transform: scaleY(-1);
+}
+.detail {
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem 1rem 1rem 0;
+  overflow-y: scroll;
+}
+.detail--title {
+  width: fit-content;
+  padding: 0.2rem 1rem;
+  border-radius: 2rem;
+  color: white;
+}
+.detail--content--header {
+  color: gray;
+}
+.detail--content--body {
+  color: gray;
+  font-weight: 500;
 }
 
 .bar {
   flex: auto;
   margin-left: 1px;
-  border-radius: 0.2rem;
+  border-radius: 1rem;
   background: var(--blue-gradient);
 }
 

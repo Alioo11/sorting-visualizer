@@ -1,4 +1,5 @@
 import { store } from "../redux";
+
 export const createBars = (bars: number[], options?: {}) => {
   const Pivot = store.getState().colapsePivot;
   return bars.map((barItem) => {

@@ -54,6 +54,9 @@ const dropDownAlgoBtn_2 = document.querySelector("#dropDownAlgorithm2");
 const barsContainer_1 = document.querySelector("#bars-container-1");
 const barsContainer_2 = document.querySelector("#bars-container-2");
 
+const detailBox_1 = document.querySelector("#bar-container-id-1");
+const detailBox_2 = document.querySelector("#bar-container-id-2");
+
 const btn_1 = document.querySelector("#test-btn-1");
 const btn_2 = document.querySelector("#test-btn-2");
 const btn_3 = document.querySelector("#test-btn-3");
@@ -174,8 +177,10 @@ store.subscribe(() => {
   const { compareMode, barsCount } = store.getState();
   if (!compareMode) {
     barsContainer_2?.classList.add("hide");
+    detailBox_2?.classList.add("hide");
   } else {
     barsContainer_2?.classList.remove("hide");
+    detailBox_2?.classList.remove("hide");
     barCountPreveState2 !== barsCount && fillBoard(barsContainer_2, boardType.second);
     compareMode && (barCountPreveState2 = barsCount);
   }
