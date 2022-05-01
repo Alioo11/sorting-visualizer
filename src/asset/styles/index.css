@@ -117,10 +117,13 @@ body {
   background-color: rgb(232, 232, 232);
   height: 75vh;
   display: grid;
-  grid-template-columns: 4fr 2fr;
-  grid-template-rows: 1fr 1fr;
+  /* grid-template-columns: 4fr 2fr; */
+  grid-template-rows: auto;
   /* display: flex; */
   /* flex-direction: row; */
+}
+.boards-container--open-doc {
+  grid-template-columns: 4fr 2fr !important;
 }
 
 .bars-container {

@@ -5,6 +5,7 @@ import { algorithmTypes } from "../utils/types";
 const initialState = {
   detailMood: false,
   compareMode: false,
+  algorithmsDoc: false,
   firstAlgorithm: algorithmTypes.bubble_sort,
   secondAlgirithm: algorithmTypes.bubble_sort,
   barsCount: 30,
@@ -42,6 +43,9 @@ const counterSlice = createSlice({
     changeSecondAlgorithm: (state, { payload }) => {
       state.secondAlgirithm = payload;
     },
+    toggleAlgorithmDoc: (state) => {
+      state.algorithmsDoc = !state.algorithmsDoc;
+    },
   },
 });
 
@@ -50,4 +54,5 @@ const store = configureStore({
 });
 
 export { store };
-export const { changeSpeed, toggleCompareMode, changeBarsCount, changeFirstAlgorithm, changeSecondAlgorithm } = counterSlice.actions;
+export const { toggleAlgorithmDoc, changeSpeed, toggleCompareMode, changeBarsCount, changeFirstAlgorithm, changeSecondAlgorithm } =
+  counterSlice.actions;

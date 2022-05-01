@@ -1,28 +1,11 @@
 import { changeFirstAlgorithm, changeSecondAlgorithm, store } from "./redux/index";
-import { changeSpeed, toggleCompareMode, changeBarsCount } from "./redux";
+import { changeSpeed, toggleCompareMode, changeBarsCount, toggleAlgorithmDoc } from "./redux";
 import { incrementingArray, wait } from "./utils/commonFunction";
 import { createBars } from "./DOMFunctions/createBars";
-import {
-  swapBars,
-  MoveBarAnimationAsync,
-  initBoards,
-  fillBoard,
-  putArryAtElement,
-  PutBar,
-  ChangeBarsColor,
-  swapBarAnimationAsync,
-  compareBars,
-  stretch,
-  stretchAnimation,
-  raise,
-  raiseAnimation,
-  moveBarAndFloor,
-  moveBarAndFloorAnimation,
-  changeBarsColorHELPER,
-} from "./DOMFunctions/manipulate";
+import { initBoards, fillBoard, putArryAtElement } from "./DOMFunctions/manipulate";
 import { randomizeArray, randomizeArrayRUNNER } from "./algorithms/randomize/randomize";
-import { board_1_Elements, board_2_Elements } from "./DOMFunctions/manipulate";
-import { boardType, barColors, commandTypes, algorithmTypes, instruction } from "./utils/types";
+import { board_1_Elements } from "./DOMFunctions/manipulate";
+import { boardType, algorithmTypes, instruction } from "./utils/types";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
 import { isActiveAnimation } from "./utils/commonFunction";
 import { runner } from "./utils/commonFunction";
@@ -53,6 +36,9 @@ const dropDownAlgoBtn_2 = document.querySelector("#dropDownAlgorithm2");
 
 const barsContainer_1 = document.querySelector("#bars-container-1");
 const barsContainer_2 = document.querySelector("#bars-container-2");
+
+const boardsContainer = document.querySelector(".boards-container ");
+const docBoxes = document.querySelectorAll(".detail");
 
 const detailBox_1 = document.querySelector("#bar-container-id-1");
 const detailBox_2 = document.querySelector("#bar-container-id-2");
@@ -177,10 +163,10 @@ store.subscribe(() => {
   const { compareMode, barsCount } = store.getState();
   if (!compareMode) {
     barsContainer_2?.classList.add("hide");
-    detailBox_2?.classList.add("hide");
+    //detailBox_2?.classList.add("hide");
   } else {
     barsContainer_2?.classList.remove("hide");
-    detailBox_2?.classList.remove("hide");
+    //detailBox_2?.classList.remove("hide");
     barCountPreveState2 !== barsCount && fillBoard(barsContainer_2, boardType.second);
     compareMode && (barCountPreveState2 = barsCount);
   }
@@ -195,6 +181,26 @@ store.subscribe(() => {
     putArryAtElement(incrementingArr, boardType.main);
     compareMode && putArryAtElement(incrementingArr, boardType.second);
   }
+});
+
+// let lastAlgorithmDoc = false;
+// store.subscribe(() => {
+//   const { algorithmsDoc } = store.getState();
+//   if (lastAlgorithmDoc !== algorithmsDoc) {
+//     docBoxes.forEach((docItem) => {
+//       docItem.classList.toggle("hide");
+//     });
+//     boardsContainer?.classList.toggle("boards-container--open-doc");
+//     lastAlgorithmDoc = algorithmsDoc;
+//   }
+// });
+
+//
+//
+//
+
+btn_2?.addEventListener("click", () => {
+  store.dispatch(toggleAlgorithmDoc());
 });
 
 // btn_2?.addEventListener("click", async () => {
@@ -237,21 +243,21 @@ store.subscribe(() => {
 //   }
 // });
 
-btn_4?.addEventListener("click", async () => {
-  await raiseAnimation([8, 9]);
-  raise([8, 9]);
-  await moveBarAndFloorAnimation(8, 1);
-  moveBarAndFloor(8, 1);
-  await moveBarAndFloorAnimation(9, -1);
-  moveBarAndFloor(9, -1);
-});
+// btn_4?.addEventListener("click", async () => {
+//   await raiseAnimation([8, 9]);
+//   raise([8, 9]);
+//   await moveBarAndFloorAnimation(8, 1);
+//   moveBarAndFloor(8, 1);
+//   await moveBarAndFloorAnimation(9, -1);
+//   moveBarAndFloor(9, -1);
+// });
 
-btn_2?.addEventListener("click", async () => {
-  if (board_1_Elements) {
-    const { compareMode, firstAlgorithm, secondAlgirithm } = store.getState();
-    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
-    const instructions = mergeSortRUNNER(barsHeights);
-    console.log(instructions);
-    engine(instructions);
-  }
-});
+// btn_2?.addEventListener("click", async () => {
+//   if (board_1_Elements) {
+//     const { compareMode, firstAlgorithm, secondAlgirithm } = store.getState();
+//     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+//     const instructions = mergeSortRUNNER(barsHeights);
+//     console.log(instructions);
+//     engine(instructions);
+//   }
+// });
