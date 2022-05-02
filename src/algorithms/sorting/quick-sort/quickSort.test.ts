@@ -11,7 +11,7 @@ describe("testing insertion sort", () => {
 
   sortTestCases.forEach((item) => {
     test(`testing insertion sort with ${item.slice(0, 30)},...`, () => {
-      expect(quickSort([...item]).arr).toEqual(item.sort((a, b) => a - b));
+      expect(quickSort([...item])).toEqual(item.sort((a, b) => a - b));
     });
   });
 });

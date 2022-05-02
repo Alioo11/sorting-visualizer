@@ -41,7 +41,7 @@ describe("algorithms test", () => {
 
   sortTestCases.forEach((item) => {
     test(`testing ${item.slice(0, 30)},...`, () => {
-      expect(mergeSortTemp([...item])).toEqual(item.sort((a, b) => a - b));
+      expect(mergeSortTemp([...item]).arr).toEqual(item.sort((a, b) => a - b));
     });
   });
 
