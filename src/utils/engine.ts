@@ -28,6 +28,8 @@ export const engine = async (instructions_1: instruction[], instructions_2: inst
         await wait(animationSpeed);
       }
       mainFunc && (await mainFunc(...mainArgs));
+      //await wait(1);
     }
   }
+  await wait(5);
 };
