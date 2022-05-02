@@ -28,7 +28,7 @@ const swap = (arr: number[], i: number, j: number) => {
   arr[j] = temp;
 };
 
-const pivot = (arr: number[], start: number = 0, end: number = arr.length + 1) => {
+const pivot = (arr: number[], start: number = 0, end: number = arr.length + 1, animationData: any[]) => {
   let pivot = arr[start],
     pointer = start;
 
@@ -36,32 +36,32 @@ const pivot = (arr: number[], start: number = 0, end: number = arr.length + 1) =
     if (arr[i] < pivot) {
       pointer++;
       swap(arr, pointer, i);
+      //console.log("1", pointer, i);
+      animationData.push({ type: quiksortActionTypes.swap, data: [pointer, i] });
     }
   }
   swap(arr, start, pointer);
-
+  animationData.push({ type: quiksortActionTypes.swap, data: [start, pointer] });
   return pointer;
 };
 
-export const quickSort = (arr: number[], start: number = 0, end: number = arr.length) => {
-  let pivotIndex = pivot(arr, start, end);
+export const quickSort = (arr: number[], start: number = 0, end: number = arr.length, animationData: any[] = []) => {
+  let pivotIndex = pivot(arr, start, end, animationData);
 
-  if (start >= end) return arr;
-  quickSort(arr, start, pivotIndex);
-  quickSort(arr, pivotIndex + 1, end);
+  if (start >= end) return { arr, animationData };
+  quickSort(arr, start, pivotIndex, animationData);
+  quickSort(arr, pivotIndex + 1, end, animationData);
 
-  return arr.slice(0, arr.length - 1);
+  return { arr: arr.slice(0, arr.length - 1), animationData };
 };
 
 export const quickSortRUNNER = (inputArr: number[]) => {
-  //const { arr, animationData } = quickSort(inputArr);
-  // const formatedData = animationData.map((animationItem: any) => {
-  //   //if (animationItem.type === quiksortActionTypes.swap) {
-  //   return new instruction(swapBarAnimationAsync, swap, animationItem.data, animationItem.data);
-  //   //}
-  // });
-  //console.log(arr);
-  //return formatedData;
+  const { arr, animationData } = quickSort(inputArr);
+  console.log(animationData);
+  const formatedData = animationData.map((animationItem: any) => {
+    return new instruction(swapBarAnimationAsync, swap, animationItem.data, animationItem.data);
+  });
+  return formatedData;
 };
 
 // const partition = (arr: number[], low: number, high: number, animationData: any[]) => {
