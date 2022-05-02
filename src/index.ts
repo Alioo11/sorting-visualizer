@@ -160,15 +160,19 @@ initBoards();
 let barCountPrevState: number;
 let barCountPreveState2: number;
 store.subscribe(() => {
-  const { compareMode, barsCount } = store.getState();
-  if (!compareMode) {
-    barsContainer_2?.classList.add("hide");
-    //detailBox_2?.classList.add("hide");
-  } else {
-    barsContainer_2?.classList.remove("hide");
-    //detailBox_2?.classList.remove("hide");
-    barCountPreveState2 !== barsCount && fillBoard(barsContainer_2, boardType.second);
-    compareMode && (barCountPreveState2 = barsCount);
+  if (board_1_Elements) {
+    const { compareMode, barsCount } = store.getState();
+    if (!compareMode) {
+      barsContainer_2?.classList.add("hide");
+      //detailBox_2?.classList.add("hide");
+    } else {
+      barsContainer_2?.classList.remove("hide");
+      //detailBox_2?.classList.remove("hide");
+      const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+      barCountPreveState2 !== barsCount && putArryAtElement(barsHeights, boardType.second);
+      //barCountPreveState2 !== barsCount && fillBoard(barsContainer_2, boardType.second);
+      compareMode && (barCountPreveState2 = barsCount);
+    }
   }
 });
 
