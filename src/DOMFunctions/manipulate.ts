@@ -157,9 +157,9 @@ export const ChangeBarsColor = (bars: number[], color: barColors, type: boardTyp
     });
   }
 };
-export const changeBarsColorHELPER = (start: number, end: number, adder: number, color: barColors) => {
+export const changeBarsColorHELPER = (start: number, end: number, adder: number, color: barColors, type: boardType = boardType.main) => {
   const range = Array.from(Array(end - start + adder).keys(), (e) => e + start);
-  ChangeBarsColor(range, color);
+  ChangeBarsColor(range, color, type);
 };
 
 export const compareBars = async (barIndex_1: number, barIndex_2: number, type: boardType = boardType.main) => {

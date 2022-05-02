@@ -116,16 +116,6 @@ startBtn?.addEventListener("click", () => {
   }
 });
 
-// btn_3?.addEventListener("click", () => {
-//   if (board_1_Elements) {
-//     const { compareMode, firstAlgorithm, secondAlgirithm } = store.getState();
-//     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
-//     console.log(mergeSortRUNNER(barsHeights));
-//     //const objj = new instruction(null, swapBars, [1, 5], [1, 5]);
-//     //engine([objj]);
-//   }
-// });
-
 btn_1?.addEventListener("click", () => {
   if (board_1_Elements) {
     const isCompareMode = store.getState().compareMode;
@@ -137,10 +127,6 @@ btn_1?.addEventListener("click", () => {
     isCompareMode ? engine(res, res2) : engine(res);
   }
 });
-
-// algoSpeed?.addEventListener("input", (e: any) => {
-//   store.dispatch(changeSpeed(e.target.max - e.target.value));
-// });
 
 barCount?.addEventListener("input", (e: any) => {
   store.dispatch(changeBarsCount(e.target.value));
@@ -187,6 +173,10 @@ store.subscribe(() => {
   }
 });
 
+btn_2?.addEventListener("click", () => {
+  store.dispatch(toggleAlgorithmDoc());
+});
+
 // let lastAlgorithmDoc = false;
 // store.subscribe(() => {
 //   const { algorithmsDoc } = store.getState();
@@ -202,10 +192,6 @@ store.subscribe(() => {
 //
 //
 //
-
-btn_2?.addEventListener("click", () => {
-  store.dispatch(toggleAlgorithmDoc());
-});
 
 // btn_2?.addEventListener("click", async () => {
 //   if (board_1_Elements && board_2_Elements) {
