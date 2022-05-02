@@ -14,6 +14,7 @@ import { engine } from "./utils/engine";
 import { mergeSortRUNNER, mergeSortTemp } from "./algorithms/sorting/merge-sort/mergeSort";
 
 import { insertionSortRUNNER } from "./algorithms/sorting/insertion-sort/insertionSort";
+import { quickSortRUNNER } from "./algorithms/sorting/quick-sort/quickSort";
 
 //% importing style assets
 
@@ -175,6 +176,14 @@ store.subscribe(() => {
 
 btn_2?.addEventListener("click", () => {
   store.dispatch(toggleAlgorithmDoc());
+});
+
+btn_3?.addEventListener("click", () => {
+  if (board_1_Elements) {
+    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+    const instructions = quickSortRUNNER(barsHeights);
+    engine(instructions);
+  }
 });
 
 // let lastAlgorithmDoc = false;
