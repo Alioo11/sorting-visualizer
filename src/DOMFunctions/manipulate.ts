@@ -272,7 +272,10 @@ export const moveBarAndFloorAnimation = (barIndex: number, amount: number, type:
       });
     } else if (type === boardType.second && board_2_Elements) {
       const barLength = board_2_Elements[barIndex].getBoundingClientRect().width + 1;
-      board_2_Elements[barIndex].style.transform = `translate(${amount * barLength}px , ${0}px)`;
+      board_2_Elements[barIndex].animate([{ transform: "" }, { transform: `translate(${amount * barLength}px , ${0}px)` }], {
+        duration: animationSpeed,
+        easing: "ease-out",
+      });
     }
     setTimeout(() => {
       res(null);
