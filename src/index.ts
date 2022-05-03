@@ -81,6 +81,11 @@ algo_1_items.forEach((algoItem) => {
         store.dispatch(changeFirstAlgorithm(algorithmTypes.merge_sort));
         break;
       }
+      case "quick-sort": {
+        console.log("first one ");
+        store.dispatch(changeFirstAlgorithm(algorithmTypes.quick_sort));
+        break;
+      }
     }
   });
 });
@@ -100,6 +105,11 @@ algo_2_items.forEach((algoItem) => {
       case "merge-sort": {
         console.log("second one ");
         store.dispatch(changeSecondAlgorithm(algorithmTypes.merge_sort));
+        break;
+      }
+      case "quick-sort": {
+        console.log("second one ");
+        store.dispatch(changeSecondAlgorithm(algorithmTypes.quick_sort));
         break;
       }
     }
@@ -195,13 +205,12 @@ btn_3?.addEventListener("click", () => {
   if (board_1_Elements) {
     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
     const instructions = quickSortRUNNER(barsHeights);
-    console.log(instructions);
     engine([...instructions]);
   }
 });
 
 btn_4?.addEventListener("click", () => {
-  store.dispatch(changeSpeed(100));
+  store.dispatch(changeSpeed(2000));
 });
 
 // let lastAlgorithmDoc = false;

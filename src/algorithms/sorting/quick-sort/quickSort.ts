@@ -33,15 +33,20 @@ const swap = (arr: number[], i: number, j: number) => {
 const pivot = (arr: number[], start: number = 0, end: number = arr.length + 1, animationData: any[]) => {
   let pivot = arr[start],
     pointer = start;
+  animationData.push({ type: quiksortActionTypes.paint, data: [start, start, barColors.green] });
+  //animationData.push({ type: quiksortActionTypes.paint, data: [pivot - 1, pivot - 1, barColors.green] });
   for (let i = start; i < end; i++) {
-    // !(i == arr.length || pointer == arr.length || i === pointer) && animationData.push({ type: quiksortActionTypes.compare, data: [pointer, i] });
+    //!(i == arr.length || pointer == arr.length || i === pointer) && animationData.push({ type: quiksortActionTypes.compare, data: [pointer, i] });
     if (arr[i] < pivot) {
       pointer++;
       swap(arr, pointer, i);
+      !(i == arr.length || pointer == arr.length || i === pointer) && animationData.push({ type: quiksortActionTypes.compare, data: [pointer, i] });
       !(i == arr.length || pointer == arr.length || i === pointer) && animationData.push({ type: quiksortActionTypes.swap, data: [pointer, i] });
     }
   }
-
+  !(start == arr.length || pointer == arr.length) && animationData.push({ type: quiksortActionTypes.paint, data: [start, start, barColors.blue] });
+  !(start == arr.length || pointer == arr.length) &&
+    animationData.push({ type: quiksortActionTypes.paint, data: [pointer, pointer, barColors.green] });
   swap(arr, start, pointer);
   !(start == arr.length || pointer == arr.length || start === pointer) &&
     animationData.push({ type: quiksortActionTypes.swap, data: [start, pointer] });

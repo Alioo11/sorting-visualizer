@@ -3,6 +3,7 @@ import { bubbleSortRUNNER } from "../algorithms/sorting/bubbleSort.ts/bubbleSort
 import { insertionSortRUNNER } from "../algorithms/sorting/insertion-sort/insertionSort";
 import { algorithmTypes } from "./types";
 import { mergeSortRUNNER } from "../algorithms/sorting/merge-sort/mergeSort";
+import { quickSortRUNNER } from "../algorithms/sorting/quick-sort/quickSort";
 
 export function getRandomArbitrary(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -39,6 +40,9 @@ export const runner = (algo: algorithmTypes): Function => {
     }
     case algorithmTypes.merge_sort: {
       return mergeSortRUNNER;
+    }
+    case algorithmTypes.quick_sort: {
+      return quickSortRUNNER;
     }
   }
 };

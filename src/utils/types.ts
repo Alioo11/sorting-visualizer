@@ -61,6 +61,7 @@ enum algorithmTypes {
   bubble_sort = "bubble-sort",
   insertion_sort = "insertion-sort",
   merge_sort = "merge-sort ",
+  quick_sort = "quick-sort",
 }
 
 enum commandTypes {
