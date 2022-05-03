@@ -32,7 +32,7 @@ const swap = (arr: number[], i: number, j: number) => {
 const pivot = (arr: number[], start: number = 0, end: number = arr.length + 1, animationData: any[]) => {
   let pivot = arr[start],
     pointer = start;
-
+  //animationData.push({ type: quiksortActionTypes.paint, data: [start, arr.length, barColors.red] });
   for (let i = start; i < arr.length; i++) {
     if (arr[i] < pivot) {
       pointer++;
@@ -40,9 +40,11 @@ const pivot = (arr: number[], start: number = 0, end: number = arr.length + 1, a
       !(i == arr.length || pointer == arr.length || i === pointer) && animationData.push({ type: quiksortActionTypes.swap, data: [pointer, i] });
     }
   }
+  //animationData.push({ type: quiksortActionTypes.paint, data: [start, arr.length, barColors.blue] });
   swap(arr, start, pointer);
   !(start == arr.length || pointer == arr.length || start === pointer) &&
     animationData.push({ type: quiksortActionTypes.swap, data: [start, pointer] });
+  // animationData.push({ type: quiksortActionTypes.paint, data: [start, arr.length, barColors.blue] });
   return pointer;
 };
 
@@ -60,7 +62,16 @@ export const quickSortRUNNER = (inputArr: number[]) => {
   //console.log("got", arr);
   //console.log("insturcions are", animationData);
   const formatedData = animationData.map((animationItem: any) => {
-    return new instruction(swapBarAnimationAsync, swapBars, animationItem.data, animationItem.data);
+    if (animationItem.type === quiksortActionTypes.swap) {
+      return new instruction(swapBarAnimationAsync, swapBars, animationItem.data, animationItem.data);
+    } else {
+      return new instruction(
+        null,
+        changeBarsColorHELPER,
+        [animationItem.data[0], animationItem.data[1], 0, animationItem.data[2]],
+        [animationItem.data[0], animationItem.data[1], 0, animationItem.data[2]]
+      );
+    }
   });
   return formatedData;
 };
