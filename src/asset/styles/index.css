@@ -138,7 +138,7 @@ body {
   transform: scaleY(-1);
 }
 .bars-container::before {
-  content: "Quick Sort";
+  content: attr(data-content);
   background: rgb(251, 88, 70);
   color: white;
   font-weight: 500;
@@ -151,6 +151,7 @@ body {
   align-items: flex-start;
   position: absolute;
   bottom: 15px;
+  text-transform: capitalize;
 }
 
 .detail {

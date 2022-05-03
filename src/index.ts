@@ -19,6 +19,7 @@ import { quickSortRUNNER } from "./algorithms/sorting/quick-sort/quickSort";
 //% importing style assets
 
 import "./asset/styles/index.css";
+import { sortAndDeduplicateDiagnostics } from "typescript";
 
 //% selecting DOM elements
 const algoSpeed = document.querySelector("#algo-speed");
@@ -50,6 +51,22 @@ const btn_3 = document.querySelector("#test-btn-3");
 const btn_4 = document.querySelector("#test-btn-4");
 
 //% initializing events
+
+(function () {
+  const { firstAlgorithm, secondAlgirithm } = store.getState();
+  const barsContainer_1_ref = barsContainer_1 as HTMLDivElement;
+  const barsContainer_2_ref = barsContainer_2 as HTMLDivElement;
+  barsContainer_1_ref.setAttribute("data-content", firstAlgorithm ? firstAlgorithm.replace(/-/, " ") : "---");
+  barsContainer_2_ref.setAttribute("data-content", secondAlgirithm ? secondAlgirithm.replace(/-/, " ") : "---");
+})();
+
+store.subscribe(() => {
+  const { firstAlgorithm, secondAlgirithm } = store.getState();
+  const barsContainer_1_ref = barsContainer_1 as HTMLDivElement;
+  const barsContainer_2_ref = barsContainer_2 as HTMLDivElement;
+  barsContainer_1_ref.setAttribute("data-content", firstAlgorithm ? firstAlgorithm.replace(/-/, " ") : "---");
+  barsContainer_2_ref.setAttribute("data-content", secondAlgirithm ? secondAlgirithm.replace(/-/, " ") : "---");
+});
 
 algo_1_items.forEach((algoItem) => {
   algoItem.addEventListener("click", (e: any) => {
