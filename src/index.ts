@@ -182,7 +182,8 @@ btn_3?.addEventListener("click", () => {
   if (board_1_Elements) {
     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
     const instructions = quickSortRUNNER(barsHeights);
-    engine(instructions);
+    console.log(instructions);
+    engine([...instructions]);
   }
 });
 
