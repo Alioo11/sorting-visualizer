@@ -158,7 +158,8 @@ export const ChangeBarsColor = (bars: number[], color: barColors, type: boardTyp
   }
 };
 export const changeBarsColorHELPER = (start: number, end: number, adder: number, color: barColors, type: boardType = boardType.main) => {
-  const range = Array.from(Array(end - start + adder).keys(), (e) => e + start);
+  let range = Array.from(Array(end - start + adder).keys(), (e) => e + start);
+  if (start === end) range = [start];
   ChangeBarsColor(range, color, type);
 };
 

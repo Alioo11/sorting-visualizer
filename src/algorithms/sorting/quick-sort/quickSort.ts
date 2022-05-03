@@ -14,6 +14,7 @@ import {
   PutBar,
   swapBars,
   swapBarAnimationAsync,
+  compareBars,
 } from "../../../DOMFunctions/manipulate";
 
 enum quiksortActionTypes {
@@ -32,19 +33,18 @@ const swap = (arr: number[], i: number, j: number) => {
 const pivot = (arr: number[], start: number = 0, end: number = arr.length + 1, animationData: any[]) => {
   let pivot = arr[start],
     pointer = start;
-  //animationData.push({ type: quiksortActionTypes.paint, data: [start, arr.length, barColors.red] });
-  for (let i = start; i < arr.length; i++) {
+  for (let i = start; i < end; i++) {
+    // !(i == arr.length || pointer == arr.length || i === pointer) && animationData.push({ type: quiksortActionTypes.compare, data: [pointer, i] });
     if (arr[i] < pivot) {
       pointer++;
       swap(arr, pointer, i);
       !(i == arr.length || pointer == arr.length || i === pointer) && animationData.push({ type: quiksortActionTypes.swap, data: [pointer, i] });
     }
   }
-  //animationData.push({ type: quiksortActionTypes.paint, data: [start, arr.length, barColors.blue] });
+
   swap(arr, start, pointer);
   !(start == arr.length || pointer == arr.length || start === pointer) &&
     animationData.push({ type: quiksortActionTypes.swap, data: [start, pointer] });
-  // animationData.push({ type: quiksortActionTypes.paint, data: [start, arr.length, barColors.blue] });
   return pointer;
 };
 
@@ -64,6 +64,8 @@ export const quickSortRUNNER = (inputArr: number[]) => {
   const formatedData = animationData.map((animationItem: any) => {
     if (animationItem.type === quiksortActionTypes.swap) {
       return new instruction(swapBarAnimationAsync, swapBars, animationItem.data, animationItem.data);
+    } else if (animationItem.type === quiksortActionTypes.compare) {
+      return new instruction(compareBars, null, animationItem.data, animationItem.data);
     } else {
       return new instruction(
         null,

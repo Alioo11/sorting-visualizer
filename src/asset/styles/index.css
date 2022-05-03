@@ -122,6 +122,7 @@ body {
   /* display: flex; */
   /* flex-direction: row; */
 }
+
 .boards-container--open-doc {
   grid-template-columns: 4fr 2fr !important;
 }
@@ -136,6 +137,22 @@ body {
   /* flex-direction: row; */
   transform: scaleY(-1);
 }
+.bars-container::before {
+  content: "Quick Sort";
+  background: rgb(251, 88, 70);
+  color: white;
+  font-weight: 500;
+  width: fit-content;
+  height: fit-content;
+  margin: 0 0.5rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2rem;
+  transform: scaleY(-1);
+  align-items: flex-start;
+  position: absolute;
+  bottom: 15px;
+}
+
 .detail {
   background-color: white;
   padding: 1rem;

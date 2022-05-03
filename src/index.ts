@@ -187,6 +187,10 @@ btn_3?.addEventListener("click", () => {
   }
 });
 
+btn_4?.addEventListener("click", () => {
+  store.dispatch(changeSpeed(100));
+});
+
 // let lastAlgorithmDoc = false;
 // store.subscribe(() => {
 //   const { algorithmsDoc } = store.getState();
