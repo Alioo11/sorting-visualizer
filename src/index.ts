@@ -1,17 +1,14 @@
 import { changeFirstAlgorithm, changeSecondAlgorithm, store } from "./redux/index";
 import { changeSpeed, toggleCompareMode, changeBarsCount, toggleAlgorithmDoc } from "./redux";
 import { incrementingArray, wait } from "./utils/commonFunction";
-import { createBars } from "./DOMFunctions/createBars";
 import { initBoards, fillBoard, putArryAtElement } from "./DOMFunctions/manipulate";
 import { randomizeArray, randomizeArrayRUNNER } from "./algorithms/randomize/randomize";
 import { board_1_Elements } from "./DOMFunctions/manipulate";
-import { boardType, algorithmTypes, instruction } from "./utils/types";
+import { boardType, algorithmTypes } from "./utils/types";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
 import { isActiveAnimation } from "./utils/commonFunction";
 import { runner } from "./utils/commonFunction";
-
 import { engine } from "./utils/engine";
-import { mergeSortRUNNER, mergeSortTemp } from "./algorithms/sorting/merge-sort/mergeSort";
 
 import { insertionSortRUNNER } from "./algorithms/sorting/insertion-sort/insertionSort";
 import { quickSortRUNNER } from "./algorithms/sorting/quick-sort/quickSort";
@@ -19,7 +16,6 @@ import { quickSortRUNNER } from "./algorithms/sorting/quick-sort/quickSort";
 //% importing style assets
 
 import "./asset/styles/index.css";
-import { sortAndDeduplicateDiagnostics } from "typescript";
 
 //% selecting DOM elements
 const algoSpeed = document.querySelector("#algo-speed");
