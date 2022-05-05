@@ -9,7 +9,8 @@ import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort"
 import { isActiveAnimation } from "./utils/commonFunction";
 import { runner } from "./utils/commonFunction";
 import { engine } from "./utils/engine";
-
+import { radixSortRUNNER } from "./algorithms/sorting/radix-sort/radixSort";
+import { putWithIndex } from "./DOMFunctions/manipulate";
 import { insertionSortRUNNER } from "./algorithms/sorting/insertion-sort/insertionSort";
 import { quickSortRUNNER } from "./algorithms/sorting/quick-sort/quickSort";
 
@@ -204,14 +205,18 @@ btn_2?.addEventListener("click", () => {
 btn_3?.addEventListener("click", () => {
   if (board_1_Elements) {
     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
-    const instructions = quickSortRUNNER(barsHeights);
-    engine([...instructions]);
+    const radixFormatedData = radixSortRUNNER(barsHeights);
+    console.log(radixFormatedData);
+    engine(radixFormatedData);
+    // const instructions = quickSortRUNNER(barsHeights);
+    // engine([...instructions]);
   }
 });
 
-btn_4?.addEventListener("click", () => {
-  store.dispatch(changeSpeed(2000));
-});
+// btn_4?.addEventListener("click", () => {
+//   putWithIndex(5, 10);
+//   // store.dispatch(changeSpeed(2000));
+// });
 
 // let lastAlgorithmDoc = false;
 // store.subscribe(() => {

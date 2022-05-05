@@ -107,6 +107,16 @@ export const PutBar = (barIndex: number, amount: number, type: boardType = board
   }
 };
 
+export const putWithIndex = (targetBarIndex: number, amoutRefbarIndex: number, type: boardType = boardType.main) => {
+  if (type === boardType.main && board_1_Elements) {
+    const barHeight = board_1_Elements[amoutRefbarIndex].style.height;
+    board_1_Elements[targetBarIndex].style.height = barHeight;
+  } else if (type === boardType.second && board_2_Elements) {
+    const barHeight = board_2_Elements[amoutRefbarIndex].style.height;
+    board_2_Elements[targetBarIndex].style.height = barHeight;
+  }
+};
+
 export const ChangeBarsColor = (bars: number[], color: barColors, type: boardType = boardType.main) => {
   const colorClasses = ["_blue", "_green", "_red", "_purple"];
   if (type === boardType.main && board_1_Elements) {
