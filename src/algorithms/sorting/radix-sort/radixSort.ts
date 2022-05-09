@@ -18,6 +18,8 @@ import {
   putWithIndex,
 } from "../../../DOMFunctions/manipulate";
 
+const reformat = (arrLength: number, item: number) => parseFloat((item * (100 / arrLength) + 1).toFixed(5));
+
 type matrix = Array<Array<number>>;
 enum radixSortActionTypes {
   putBarAtIndex,
@@ -62,7 +64,7 @@ export function radixSort(arrOfNums: any[], animationData: animationType[] = [])
     const flattenDigitBuckt = digitBuckets.flat();
     console.log(flattenDigitBuckt);
     flattenDigitBuckt.forEach((digiBuckt, index) => {
-      animationData.push({ type: radixSortActionTypes.putBarAtIndex, data: [index, digiBuckt] });
+      animationData.push({ type: radixSortActionTypes.putBarAtIndex, data: [index, reformat(arrOfNums.length, digiBuckt)] });
     });
     arrOfNums = mtx.concat(...digitBuckets);
   }
@@ -72,10 +74,9 @@ export function radixSort(arrOfNums: any[], animationData: animationType[] = [])
 export const radixSortRUNNER = (inputArr: number[]) => {
   const Factor = 100 / inputArr.length;
   const transformedArray = inputArr.map((item: number): number => Math.round(item / Factor));
-  console.log("ran function with", transformedArray);
   const { arrOfNums, animationData } = radixSort(transformedArray);
   const formatedData = animationData.map((item) => {
-    return new instruction(null, putWithIndex, item.data, item.data);
+    return new instruction(null, PutBar, item.data, item.data);
   });
   return formatedData;
 };
