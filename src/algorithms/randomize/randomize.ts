@@ -3,6 +3,9 @@ import { wait } from "../../utils/commonFunction";
 import { instruction } from "../../utils/types";
 import { swapBars, swapBarAnimationAsync, putArryAtElement } from "../../DOMFunctions/manipulate";
 
+import { store } from "../../redux";
+import { boardType } from "../../utils/types";
+
 export const randomizeArray = (arr: number[]) => {
   const res: Array<Array<number>> = [];
   arr.forEach((element) => {
@@ -17,7 +20,6 @@ export const randomizeArrayRUNNER = (arr: number[]) => {
   const formetedArray = randArrayRes.map((randItem) => {
     return new instruction(swapBarAnimationAsync, swapBars, randItem, randItem);
   });
-  console.log(formetedArray);
   return formetedArray;
 };
 
@@ -43,11 +45,11 @@ export const randomizeArrayInOneMove = (arr: number[]) => {
 export const randomizeArrayInOneMoveRUNNER = (arr: number[]) => {
   const randArrayRes = randomizeArrayInOneMove(arr);
   const test = randArrayRes.map((item, index) => {
-    return () => swapBarAnimationAsync(item[0], item[1]);
+    return (type: any) => swapBarAnimationAsync(item[0], item[1], type);
   });
 
-  const animationRunner = async () => {
-    await Promise.all(test.map((testItem) => testItem()));
+  const animationRunner = async (inputArr: any, type: boardType = boardType.main) => {
+    await Promise.all(test.map((testItem) => testItem(type)));
   };
 
   const formetedArray = new instruction(animationRunner, putArryAtElement, [arr], [arr]);
