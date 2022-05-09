@@ -13,6 +13,7 @@ import { radixSortRUNNER } from "./algorithms/sorting/radix-sort/radixSort";
 import { putWithIndex } from "./DOMFunctions/manipulate";
 import { insertionSortRUNNER } from "./algorithms/sorting/insertion-sort/insertionSort";
 import { quickSortRUNNER } from "./algorithms/sorting/quick-sort/quickSort";
+import { DETAIL_PIVOT } from "./utils/types";
 
 //% importing style assets
 
@@ -120,10 +121,12 @@ algo_2_items.forEach((algoItem) => {
 
 randomizeBtn?.addEventListener("click", () => {
   if (board_1_Elements) {
+    const barsCount = board_1_Elements.length;
     const isCompareMode = store.getState().compareMode;
-    //const barsHeights = Array.from(board_1_Elements.keys());
-    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
-    const res = randomizeArrayInOneMoveRUNNER(barsHeights);
+    //const barsHeights =
+    const barsHeights =
+      barsCount < DETAIL_PIVOT ? Array.from(board_1_Elements, (e) => parseFloat(e.style.height)) : Array.from(board_1_Elements.keys());
+    const res = barsCount < DETAIL_PIVOT ? randomizeArrayInOneMoveRUNNER(barsHeights) : randomizeArrayRUNNER(barsHeights);
     isCompareMode ? engine(res, res) : engine(res);
   }
 });
@@ -148,9 +151,7 @@ btn_1?.addEventListener("click", () => {
     const isCompareMode = store.getState().compareMode;
     const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
     const res2 = insertionSortRUNNER([...barsHeights]);
-
     const res = bubbleSortRUNNER([...barsHeights]);
-    console.log(res);
     isCompareMode ? engine(res, res2) : engine(res);
   }
 });

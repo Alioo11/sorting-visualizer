@@ -1,12 +1,7 @@
 import { getRandomArbitrary } from "../../utils/commonFunction";
-
+import { wait } from "../../utils/commonFunction";
 import { instruction } from "../../utils/types";
-import { swapBars, compareBars, swapBarAnimationAsync, putArryAtElement, MoveBarAnimationAsync } from "../../DOMFunctions/manipulate";
-
-interface randomizeData {
-  dataItem: number;
-  movedBy: number;
-}
+import { swapBars, swapBarAnimationAsync, putArryAtElement } from "../../DOMFunctions/manipulate";
 
 export const randomizeArray = (arr: number[]) => {
   const res: Array<Array<number>> = [];
@@ -19,17 +14,15 @@ export const randomizeArray = (arr: number[]) => {
 
 export const randomizeArrayRUNNER = (arr: number[]) => {
   const randArrayRes = randomizeArray(arr);
-
   const formetedArray = randArrayRes.map((randItem) => {
     return new instruction(swapBarAnimationAsync, swapBars, randItem, randItem);
   });
-
+  console.log(formetedArray);
   return formetedArray;
 };
 
 export const randomizeArrayInOneMove = (arr: number[]) => {
   const res: Array<Array<number>> = [];
-
   const moveData = new Array(arr.length).fill(0);
 
   arr.forEach((element, index) => {
@@ -44,7 +37,6 @@ export const randomizeArrayInOneMove = (arr: number[]) => {
     moveData[randItem] = 1;
     res.push([index, randItem]);
   });
-  console.log(res);
   return res;
 };
 
