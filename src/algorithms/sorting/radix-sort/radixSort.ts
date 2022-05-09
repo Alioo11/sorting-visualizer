@@ -76,7 +76,7 @@ export const radixSortRUNNER = (inputArr: number[]) => {
   const transformedArray = inputArr.map((item: number): number => Math.round(item / Factor));
   const { arrOfNums, animationData } = radixSort(transformedArray);
   const formatedData = animationData.map((item) => {
-    return new instruction(null, PutBar, item.data, item.data);
+    return new instruction(wait, PutBar, item.data, item.data);
   });
   return formatedData;
 };

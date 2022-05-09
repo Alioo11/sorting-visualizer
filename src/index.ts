@@ -2,7 +2,7 @@ import { changeFirstAlgorithm, changeSecondAlgorithm, store } from "./redux/inde
 import { changeSpeed, toggleCompareMode, changeBarsCount, toggleAlgorithmDoc } from "./redux";
 import { incrementingArray, wait } from "./utils/commonFunction";
 import { initBoards, fillBoard, putArryAtElement } from "./DOMFunctions/manipulate";
-import { randomizeArray, randomizeArrayRUNNER } from "./algorithms/randomize/randomize";
+import { randomizeArrayRUNNER, randomizeArrayInOneMoveRUNNER } from "./algorithms/randomize/randomize";
 import { board_1_Elements } from "./DOMFunctions/manipulate";
 import { boardType, algorithmTypes } from "./utils/types";
 import { bubbleSortRUNNER } from "./algorithms/sorting/bubbleSort.ts/bubbleSort";
@@ -121,8 +121,9 @@ algo_2_items.forEach((algoItem) => {
 randomizeBtn?.addEventListener("click", () => {
   if (board_1_Elements) {
     const isCompareMode = store.getState().compareMode;
-    const barsHeights = Array.from(board_1_Elements.keys());
-    const res = randomizeArrayRUNNER(barsHeights);
+    //const barsHeights = Array.from(board_1_Elements.keys());
+    const barsHeights = Array.from(board_1_Elements, (e) => parseFloat(e.style.height));
+    const res = randomizeArrayInOneMoveRUNNER(barsHeights);
     isCompareMode ? engine(res, res) : engine(res);
   }
 });

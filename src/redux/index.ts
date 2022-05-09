@@ -13,6 +13,7 @@ const initialState = {
   colapsePivot: 100,
   animationSpeedPivot: 200,
   animationSpeed: 850,
+  //animationSpeed: 8500,
 };
 
 const counterSlice = createSlice({
@@ -28,6 +29,7 @@ const counterSlice = createSlice({
       } else if (barCount > 50) {
         state.animationSpeed = 200 - parseInt(payload);
       } else {
+        //state.animationSpeed = 10000;
         state.animationSpeed = 371;
       }
     },
