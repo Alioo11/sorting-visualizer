@@ -79,6 +79,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: white;
+  /* border-bottom: 1px solid gray; */
 }
 
 .nav-row > :nth-child(n) {
