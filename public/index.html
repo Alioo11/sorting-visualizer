@@ -31,47 +31,57 @@
     </div>
     <div class="nav-row">
         <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle " type="button" id="dropDownAlgorithm1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle " type="button" id="dropDownAlgorithm1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                Algorithm
             </button>
             <div class="dropdown-menu" aria-labelledby="dropDownAlgorithm1">
               <!-- <li class="dropdown-header"> O(n2) </li> -->
               <a class="dropdown-item algo_1_type" id = "bubble-sort" href="#">Bubble Sort</a>
               <a class="dropdown-item algo_1_type" id = "insertion-sort" href="#">Insertion Sort </a>
+              <a class="dropdown-item algo_1_type disabled" id = "selection-sort" href="#">Selection Sort (COMMING SOON)</a>
+              <a class="dropdown-item algo_1_type disabled" id = "comb-sort" href="#">Comb Sort (COMMING SOON)</a>
+              <a class="dropdown-item algo_1_type disabled" id = "exchange-sort" href="#">Exchange Sort (COMMING SOON) </a>
               <!-- <a class="dropdown-item algo_1_type" id = "selection-sort" href="#">Selection Sort (BROKEN)</a> -->
               <div class="dropdown-divider"></div>
               <!-- <li class="dropdown-header">O(n*log n) </li> -->
               <a class="dropdown-item algo_1_type" id = "merge-sort" href="#">Merge Sort</a>
               <a class="dropdown-item algo_1_type" id = "quick-sort" href="#">Quick Sort</a>
+              <a class="dropdown-item algo_1_type disabled" id = "heap-sort" href="#">Heap Sort (COMMING SOON)</a>
+              <a class="dropdown-item algo_1_type disabled" id = "shell-sort" href="#">Shell Sort (COMMING SOON)</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item algo_1_type" id = "radix-sort" href="#">Radix Sort</a>
+              <a class="dropdown-item algo_1_type disabled" id = "counting-sort" href="#">Counting Sort (COMMING SOON)</a>
+              <a class="dropdown-item algo_1_type disabled" id = "bucket-sort" href="#">Bucket Sort (COMMING SOON)</a>
               <!-- <a class="dropdown-item algo_1_type" id = "merge-sort" href="#">Quick Sort</a> -->
             </div>
           </div>
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="if disabled turn on the compare mode ">
         <div class="dropdown">
-            <button disabled class="btn btn-light dropdown-toggle" type="button" id="dropDownAlgorithm2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button disabled class="btn btn-secondary dropdown-toggle" type="button" id="dropDownAlgorithm2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                2nd Algorithm
             </button>
             <div class="dropdown-menu" aria-labelledby="dropDownAlgorithm2">
                 <!-- <li class="dropdown-header"> O(n2) </li> -->
                 <a class="dropdown-item algo_2_type " id = "bubble-sort" href="#">Bubble Sort</a>
                 <a class="dropdown-item algo_2_type" id = "insertion-sort" href="#">Insertion Sort </a>
+                <a class="dropdown-item algo_2_type disabled" id = "selection-sort" href="#">Selection Sort (COMMING SOON)</a>
+                <a class="dropdown-item algo_2_type disabled" id = "comb-sort" href="#">Comb Sort (COMMING SOON)</a>
+                <a class="dropdown-item algo_2_type disabled" id = "exchange-sort" href="#">Exchange Sort (COMMING SOON) </a>
                 <!-- <a class="dropdown-item algo_2_type" id = "selection-sort" href="#">Selection Sort (BROKEN)</a> -->
                 <div class="dropdown-divider"></div>
                 <!-- <li class="dropdown-header">O(n*log n) </li> -->
                 <a class="dropdown-item algo_2_type" id = "merge-sort" href="#">Merge Sort</a>
                 <a class="dropdown-item algo_2_type" id = "quick-sort" href="#">Quick Sort</a>
+                <a class="dropdown-item algo_2_type disabled" id = "heap-sort" href="#">Heap Sort (COMMING SOON)</a>
+                <a class="dropdown-item algo_2_type disabled" id = "shell-sort" href="#">Shell Sort (COMMING SOON)</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item algo_2_type" id = "radix-sort" href="#">Radix Sort</a>
+                <a class="dropdown-item algo_2_type disabled" id = "counting-sort" href="#">Counting Sort (COMMING SOON)</a>
+                <a class="dropdown-item algo_2_type disabled" id = "bucket-sort" href="#">Bucket Sort (COMMING SOON)</a>
             </div>
           </div>
         </span>
-        <!-- <div class="bd-example">
-            <label for="customRange1" class="form-label">Speed</label>
-            <input type="range" step="3" min="5" max="1000" value="120" id="algo-speed"  class="form-range">
-        </div> -->
-        <button type="button" class="btn btn-secondary p-2" id="randomize">Randomize</button>
+        <button type="button" class="btn btn-warning p-2" id="randomize">Randomize</button>
     </div>
     <div class="nav-row ">
         <div class="form-check form-switch">

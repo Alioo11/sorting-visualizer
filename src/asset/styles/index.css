@@ -46,6 +46,7 @@ body {
 .nav {
   height: 150px;
   width: 100%;
+  background-color: rgb(232, 232, 232);
 }
 .burger {
   width: 30px;
@@ -69,14 +70,15 @@ body {
 }
 
 .nav-row {
-  height: 50px;
+  border-radius: 0.5rem;
+  height: 45px;
   width: 95%;
-  padding: 0 1rem;
-  margin: auto;
+  padding: 1rem;
+  margin: 0.1rem auto ;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid gray;
+  background-color: white;
 }
 
 .nav-row > :nth-child(n) {
@@ -136,6 +138,7 @@ body {
   display: flex;
   /* flex-direction: row; */
   transform: scaleY(-1);
+  border-radius: 0.5rem;
 }
 .bars-container::before {
   content: attr(data-content);
