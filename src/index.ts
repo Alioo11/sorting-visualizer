@@ -125,8 +125,8 @@ randomizeBtn?.addEventListener("click", () => {
     const isCompareMode = store.getState().compareMode;
     //const barsHeights =
     const barsHeights =
-      barsCount < DETAIL_PIVOT ? Array.from(board_1_Elements, (e) => parseFloat(e.style.height)) : Array.from(board_1_Elements.keys());
-    const res = barsCount < DETAIL_PIVOT ? randomizeArrayInOneMoveRUNNER(barsHeights) : randomizeArrayRUNNER(barsHeights);
+      barsCount <= DETAIL_PIVOT ? Array.from(board_1_Elements, (e) => parseFloat(e.style.height)) : Array.from(board_1_Elements.keys());
+    const res = barsCount <= DETAIL_PIVOT ? randomizeArrayInOneMoveRUNNER(barsHeights) : randomizeArrayRUNNER(barsHeights);
     isCompareMode ? engine(res, res) : engine(res);
   }
 });

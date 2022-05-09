@@ -8,7 +8,7 @@ const initialState = {
   algorithmsDoc: false,
   firstAlgorithm: algorithmTypes.bubble_sort,
   secondAlgirithm: algorithmTypes.bubble_sort,
-  barsCount: 30,
+  barsCount: 50,
   animationDuration: 500,
   colapsePivot: 100,
   animationSpeedPivot: 200,
