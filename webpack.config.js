@@ -2,10 +2,15 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: ["./src/index.ts", "./src/DOMFunctions/manipulate.ts"],
+  //entry: ["./src/index.ts", "./src/DOMFunctions/manipulate.ts", "bootstrap/dist/js/bootstrap"],
+  //src\asset\bootstrap-dependencies\bootstrap.min.js
+  entry: {
+    bootstrap: "./src/asset/bootstrap-dependencies/bootstrap.min.js",
+    main: ["./src/index.ts", "./src/DOMFunctions/manipulate.ts"],
+  },
   mode: "development",
   output: {
-    filename: "js/main-[contenthash].js",
+    filename: "js/[name]-[contenthash].js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
@@ -31,6 +36,7 @@ module.exports = {
           filename: `img/[name][ext]`,
         },
       },
+
       //   {
       //     test: /manifest.json$/,
       //     generator: {

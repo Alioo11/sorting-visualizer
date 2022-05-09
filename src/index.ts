@@ -17,6 +17,7 @@ import { quickSortRUNNER } from "./algorithms/sorting/quick-sort/quickSort";
 //% importing style assets
 
 import "./asset/styles/index.css";
+import "./asset/bootstrap/css/bootstrap.min.css";
 
 //% selecting DOM elements
 const algoSpeed = document.querySelector("#algo-speed");
