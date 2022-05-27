@@ -2,8 +2,11 @@ import { boardType, instruction } from "./types";
 import { isActiveAnimation } from "./commonFunction";
 import { wait } from "./commonFunction";
 import { store } from "../redux";
+let isRunning = false;
 
 export const engine = async (instructions_1: instruction[], instructions_2: instruction[] = []) => {
+  if (isRunning) return;
+  isRunning = true;
   const prograpLength = Math.max(instructions_1.length, instructions_2.length);
   const isAnimationAvtive = isActiveAnimation();
   const animationSpeed = store.getState().animationSpeed;
@@ -30,4 +33,5 @@ export const engine = async (instructions_1: instruction[], instructions_2: inst
       mainFunc && (await mainFunc(...mainArgs));
     }
   }
+  isRunning = false;
 };

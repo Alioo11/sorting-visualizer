@@ -62,6 +62,7 @@ enum algorithmTypes {
   insertion_sort = "insertion-sort",
   merge_sort = "merge-sort ",
   quick_sort = "quick-sort",
+  radix_sort = "radix-sort",
 }
 
 enum commandTypes {

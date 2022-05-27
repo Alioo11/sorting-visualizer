@@ -8,11 +8,11 @@ const initialState = {
   algorithmsDoc: false,
   firstAlgorithm: algorithmTypes.bubble_sort,
   secondAlgirithm: algorithmTypes.bubble_sort,
-  barsCount: 50,
+  barsCount: 110,
   animationDuration: 500,
   colapsePivot: 100,
   animationSpeedPivot: 200,
-  animationSpeed: 850,
+  animationSpeed: 1,
   //animationSpeed: 8500,
 };
 
@@ -33,7 +33,7 @@ const counterSlice = createSlice({
         state.animationSpeed = 371;
       }
     },
-    changeSpeed: (state, { payload }) => {
+    changeSpeed: (state: any, { payload }) => {
       state.animationSpeed = parseInt(payload);
     },
     toggleCompareMode: (state) => {

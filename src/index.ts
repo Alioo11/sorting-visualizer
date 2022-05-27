@@ -89,6 +89,11 @@ algo_1_items.forEach((algoItem) => {
         store.dispatch(changeFirstAlgorithm(algorithmTypes.quick_sort));
         break;
       }
+      case "radix-sort": {
+        console.log("first one ");
+        store.dispatch(changeFirstAlgorithm(algorithmTypes.radix_sort));
+        break;
+      }
     }
   });
 });
@@ -113,6 +118,11 @@ algo_2_items.forEach((algoItem) => {
       case "quick-sort": {
         console.log("second one ");
         store.dispatch(changeSecondAlgorithm(algorithmTypes.quick_sort));
+        break;
+      }
+      case "radix-sort": {
+        console.log("first one ");
+        store.dispatch(changeFirstAlgorithm(algorithmTypes.radix_sort));
         break;
       }
     }
@@ -171,8 +181,10 @@ compareModeBtn?.addEventListener("click", () => {
 });
 
 initBoards();
-let barCountPrevState: number;
+const barsCountGlobal = store.getState().barsCount;
+let barCountPrevState: number = barsCountGlobal;
 let barCountPreveState2: number;
+
 store.subscribe(() => {
   if (board_1_Elements) {
     const { compareMode, barsCount } = store.getState();
@@ -192,6 +204,7 @@ store.subscribe(() => {
 
 store.subscribe(() => {
   const { compareMode, barsCount } = store.getState();
+
   if (barCountPrevState !== barsCount) {
     barsCountSpan && (barsCountSpan.innerHTML = `${barsCount}`);
     barCountPrevState = barsCount;

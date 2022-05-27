@@ -1,6 +1,6 @@
 :root {
   --purple-gradient: linear-gradient(0deg, rgb(255, 0, 89) 0%, rgb(255, 0, 140) 100%);
-  --blue-gradient: linear-gradient(0deg, rgba(70, 152, 203 , 0.1) 0%, rgba(58, 102, 234 , 1) 100%);
+  --blue-gradient: linear-gradient(0deg, rgba(70, 152, 203 , 0.8) 0%, rgba(58, 102, 234 , 1) 100%);
   --green-gradient: linear-gradient(0deg, rgb(0, 164, 25) 0%, rgb(65, 255, 125) 100%);
   --red-gradient: linear-gradient(0deg, rgb(255, 0, 0) 0%, rgb(227, 90, 138) 100%);
   --gray: #707070;
@@ -46,6 +46,7 @@ body {
 .nav {
   height: 150px;
   width: 100%;
+  background-color: rgb(232, 232, 232);
 }
 .burger {
   width: 30px;
@@ -69,14 +70,16 @@ body {
 }
 
 .nav-row {
-  height: 50px;
+  border-radius: 0.5rem;
+  height: 45px;
   width: 95%;
-  padding: 0 1rem;
-  margin: auto;
+  padding: 1rem;
+  margin: 0.1rem auto ;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid gray;
+  background-color: white;
+  /* border-bottom: 1px solid gray; */
 }
 
 .nav-row > :nth-child(n) {
@@ -136,6 +139,7 @@ body {
   display: flex;
   /* flex-direction: row; */
   transform: scaleY(-1);
+  border-radius: 0.5rem;
 }
 .bars-container::before {
   content: attr(data-content);

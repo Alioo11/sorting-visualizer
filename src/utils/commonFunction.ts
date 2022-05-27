@@ -4,6 +4,7 @@ import { insertionSortRUNNER } from "../algorithms/sorting/insertion-sort/insert
 import { algorithmTypes } from "./types";
 import { mergeSortRUNNER } from "../algorithms/sorting/merge-sort/mergeSort";
 import { quickSortRUNNER } from "../algorithms/sorting/quick-sort/quickSort";
+import { radixSortRUNNER } from "../algorithms/sorting/radix-sort/radixSort";
 
 export function getRandomArbitrary(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -43,6 +44,9 @@ export const runner = (algo: algorithmTypes): Function => {
     }
     case algorithmTypes.quick_sort: {
       return quickSortRUNNER;
+    }
+    case algorithmTypes.radix_sort: {
+      return radixSortRUNNER;
     }
   }
 };
